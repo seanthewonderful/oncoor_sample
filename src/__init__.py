@@ -9,7 +9,7 @@ app.config["DEBUG_TB_INTERCEPT_REDIRECTS"]=False
 
 @app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
 
 
 
