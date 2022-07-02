@@ -1,0 +1,140 @@
+
+body {
+    margin: 0;
+    background: #F3EFE0;
+    line-height: 1.5;
+}
+
+div {
+    display: block;
+}
+
+.jumbotron {
+    background: no-repeat center fixed url(https://pbs.twimg.com/media/EQHtKlWXUAAOfL6.jpg:large);
+    background-size: cover;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+
+.jumbotron .container {
+    position: relative;
+    top: 28%;
+    z-index: 4;
+    text-align: center;
+}
+
+.jumbotron .container h1 {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #FFFFFF;
+    border-bottom-color: rgba(255,255,255,0.35);
+    display: inline-block;
+}
+
+.jumbotron .overlay {
+    background-color: rgb(86, 86, 86);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: 0.70;
+    z-index: 2;
+}
+
+.jumbotron .scroll-down {
+    height: 80px;
+    width: 110px;
+    display: block;
+    position:absolute;
+    bottom: 0px;
+    right: 5%;
+    background-color: #222222;
+    text-align: center;
+    z-index: 6;
+}
+
+.lead p {
+    display: inline-block;
+    padding: 2px 10px 0px;
+}
+
+.background-charcoal {
+    background: #444444;
+    height: 500px;
+    width: 100%;
+    justify-content: center;
+}
+.background-charcoal .row {
+    position: relative;
+    text-align: center;
+    padding: 70px 25px 70px;
+}
+
+.oncoor-animate h2{
+    color: #fff;
+    font-size: 5em;
+    position: absolute;
+    left: 50%;
+    bottom: -30%;
+    transform: translate(-50%, -50%);
+}
+.oncoor-animate h2:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 2px dodgerblue;
+}
+.oncoor-animate h2:nth-child(2) {
+    color: dodgerblue;
+    animation: animate 4s ease-in-out infinite;
+}
+@keyframes animate {
+0%,
+100% {
+    clip-path: polygon(
+    0% 45%,
+    16% 44%,
+    33% 50%,
+    54% 60%,
+    70% 61%,
+    84% 59%,
+    100% 52%,
+    100% 100%,
+    0% 100%
+    );
+}
+50% {
+    clip-path: polygon(
+    0% 60%,
+    15% 65%,
+    34% 66%,
+    51% 62%,
+    67% 50%,
+    84% 45%,
+    100% 46%,
+    100% 100%,
+    0% 100%
+    );
+}
+}
+
+.dodger-stadium {
+    background: no-repeat center fixed url(https://hermosawavephotography.com/assets/images/2019/1907_XF100698-HDR.jpg);
+    background-size: cover;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+.dodger-stadium .container {
+    position: relative;
+    top: 80%;
+    z-index: 4;
+    text-align: center;
+}
+/* .dodger-stadium .overlay {
+    background-color: rgb(86, 86, 86);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    opacity: 0.70;
+    z-index: 2;
+} */
