@@ -76,7 +76,16 @@ div {
     background: #444444;
     height: 500px;
     width: 100%;
-    justify-content: center;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: flex-start;
+}
+.background-charcoal2 {
+    position: relative;
+    background: #444444;
+    height: 500px;
+    width: 100%;
 }
 .background-charcoal .row {
     position: relative;
