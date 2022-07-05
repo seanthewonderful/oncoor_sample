@@ -5,19 +5,20 @@
 <body data-spy="scroll" data-target="navbar">
 {% block content %}
 
-<div class="jumbotron" data-src="https://pbs.twimg.com/media/EQHtKlWXUAAOfL6.jpg:large" data-position="center" style="height:765px;">
+<div data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -30%" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+
+<div class="jumbotron" id="jumbotron">
     <div class="container" style="font-family: 'Baloo Paaji 2', cursive;">
         <h1>oncoor</h1>
         <h4>sports marketing</h4>
         <div class="lead" ><p>social media</p><p>endorsements</p><p>marketing</p></div>
     </div>
     <div class="overlay"></div>
-    <a href="#profile" class="scroll-down"></a>
+    <a href="#staples" class="scroll-down"><i class="fa-solid fa-arrow-down" style="color:black;"></i></a>
 </div>
 
-<div class="background-charcoal">
-    <div class="row" style="font-family: 'Baloo Paaji 2', cursive;" id="profile">
-
+<div class="background-charcoal" id="charcoal1" data-bs-spy="scroll" data-bs-target="#navbar">
+    <div class="row" style="font-family: 'Baloo Paaji 2', cursive;">
         <button class="btn btn-primary btn-lg btn-block">you can press this blue button</button>
         <button class="btn btn-light btn-lg btn-block">you can press this white button</button>
         <button class="btn btn-secondary btn-lg btn-block">you can even press this gray button</button>
@@ -29,15 +30,68 @@
     </div>
 </div>
 
-<div class="dodger-stadium" data-src="https://hermosawavephotography.com/assets/images/2019/1907_XF100698-HDR.jpg" data-position="center" style="height: 600px;">
-    <div class="container" style="font-family: 'Baloo Paaji 2', cursive;" id="profile">
-        <div class="oncoor-animate" style="padding-bottom: -25%">
+<div class="dodger-stadium" id="dodger">
+    <div class="container" style="font-family: 'Baloo Paaji 2', cursive;">
+        <div class="dodger-animate" style="padding-bottom: -25%">
             <h2>play here</h2>
             <h2>play here</h2>
         </div>
     </div>
-    <div class="overlay"></div>
 </div>
 
+<div class="background-charcoal" id="charcoal2">
+    <div class="row" style="font-family: 'Baloo Paaji 2', cursive;">
+        <div class="container form-container">
+            <form class="contact-form" method="post" action="#">
+                <input type="hidden" name="csrf_token" value="#">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatEmail" placeholder="Email Address">
+                    <label for="floatEmail">Email Address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatName" placeholder="Your Name">
+                    <label for="floatName">Your Name</label>
+                </div>
+                <fieldset>
+                    <label for="urgency-range" class="form-label pt-4" style="color:white;">How urgent is this message:</label>
+                    <input type="range" class="form-range" id="urgency-range" 
+                        name="urgency-range" min="0" max="5" step="0.5" value="0"
+                        oninput="document.getElementById('urgency-range-label').innerHTML = this.value;"></input>
+                    <em id="urgency-range-label" style="color:white;"></em>
+                </fieldset>
+                <div class="form-floating mt-3">
+                    <textarea class="form-control" id="floatInquiry" placeholder="Send us a message!" style="height: 125px;"></textarea>
+                    <label for="floatInquiry">Send us a message!</label>
+                </div>
+                <input type="submit" name="submit" value="Send Message" class="btn btn-primary disabled pt-2">
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<div class="staples-center" id="staples">
+    <div class="staples-container" style="font-family: 'Baloo Paaji 2', cursive;">
+        <div class="staples-animate" id="staples">
+            <span>o</span>
+            <span>t</span>
+            <span>h</span>
+            <span>e</span>
+            <span>r</span>
+            <span>&nbsp</span>
+            <span>s</span>
+            <span>t</span>
+            <span>u</span>
+            <span>f</span>
+            <span>f</span>
+            <span>&nbsp</span>
+            <span>t</span>
+            <span>o</span>
+            <span>o</span>
+        </div>
+    </div>
+</div>
+
+</div>
 {% endblock %}
 </body>

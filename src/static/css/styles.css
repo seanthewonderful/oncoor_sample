@@ -1,7 +1,7 @@
 
 body {
     margin: 0;
-    background: #F3EFE0;
+    background: #535353;
     line-height: 1.5;
 }
 
@@ -9,9 +9,19 @@ div {
     display: block;
 }
 
+.nav-pills .nav-item .nav-link:not(.active) {
+    background-color: transparent;
+    color: rgb(209, 209, 209);
+}
+.nav-pills .nav-item .nav-link {
+    background-color: gray;
+    color:#244270;
+}
+
 .jumbotron {
     background: no-repeat center fixed url(https://pbs.twimg.com/media/EQHtKlWXUAAOfL6.jpg:large);
     background-size: cover;
+    height: 765px;
     margin-bottom: 0px;
     padding: 0px;
 }
@@ -37,19 +47,22 @@ div {
     bottom: 0px;
     left: 0px;
     right: 0px;
+    height: 765px;
+    /* margin-bottom: -2px; */
     opacity: 0.70;
     z-index: 2;
 }
 
 .jumbotron .scroll-down {
-    height: 80px;
-    width: 110px;
+    height: 70px;
+    width: 90px;
     display: block;
     position:absolute;
     bottom: 0px;
     right: 5%;
-    background-color: #222222;
+    background-color: #cdcdcd;
     text-align: center;
+    font-size: 2em;
     z-index: 6;
 }
 
@@ -59,6 +72,7 @@ div {
 }
 
 .background-charcoal {
+    position: relative;
     background: #444444;
     height: 500px;
     width: 100%;
@@ -84,6 +98,22 @@ div {
 }
 .oncoor-animate h2:nth-child(2) {
     color: dodgerblue;
+    animation: animate 4s ease-in-out infinite;
+}
+.dodger-animate h2{
+    color: #fff;
+    font-size: 5em;
+    position: absolute;
+    left: 50%;
+    bottom: -30%;
+    transform: translate(-50%, -50%);
+}
+.dodger-animate h2:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 2px rgb(181, 218, 255);
+}
+.dodger-animate h2:nth-child(2) {
+    color: rgb(181, 218, 255);
     animation: animate 4s ease-in-out infinite;
 }
 @keyframes animate {
@@ -115,9 +145,10 @@ div {
     );
 }
 }
-
 .dodger-stadium {
     background: no-repeat center fixed url(https://hermosawavephotography.com/assets/images/2019/1907_XF100698-HDR.jpg);
+    height: 600px;
+    opacity: 80%;
     background-size: cover;
     margin-bottom: 0px;
     padding: 0px;
@@ -128,13 +159,84 @@ div {
     z-index: 4;
     text-align: center;
 }
-/* .dodger-stadium .overlay {
-    background-color: rgb(86, 86, 86);
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    opacity: 0.70;
-    z-index: 2;
-} */
+
+.staples-center {
+    background: no-repeat center fixed url(https://i.pinimg.com/originals/c4/a2/bc/c4a2bcb08f726e4825e81f47b383e4e1.jpg);
+    height: 700px;
+    opacity: 80%;
+    background-size: cover;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+.staples-container {
+    position: relative;
+    top: 40%;
+    z-index: 4;
+    text-align: center;
+}
+
+.staples-animate > span {
+    position: relative;
+    z-index: 4;
+    text-align: center;
+    font-size: 4em;
+    font-weight: 600;
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+0%, 100% {
+    color: #FFF;
+    text-shadow: 0 0 10px #0652DD, 0 0 50px #0652DD, 0 0 100px #0652DD;
+}
+
+10%, 90% {
+    color: #111;
+    text-shadow: none;
+}
+}
+.staples-animate > span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.staples-animate > span:nth-child(3) {
+animation-delay: 0.4s;
+}
+.staples-animate > span:nth-child(4) {
+animation-delay: 0.6s;
+}
+.staples-animate > span:nth-child(5) {
+animation-delay: 0.8s;
+}
+.staples-animate > span:nth-child(6) {
+animation-delay: 1s;
+}
+.staples-animate > span:nth-child(7) {
+animation-delay: 1.2s;
+}
+.staples-animate > span:nth-child(8) {
+animation-delay: 1.4s;
+}
+.staples-animate > span:nth-child(9) {
+animation-delay: 1.6s;
+}
+.staples-animate > span:nth-child(10) {
+animation-delay: 1.8s;
+}
+.staples-animate > span:nth-child(11) {
+animation-delay: 2s;
+}
+.staples-animate > span:nth-child(12) {
+animation-delay: 2.2s;
+}
+.staples-animate > span:nth-child(13) {
+animation-delay: 2.4s;
+}
+.staples-animate > span:nth-child(14) {
+animation-delay: 2.6s;
+}
+.staples-animate > span:nth-child(15) {
+animation-delay: 2.8s;
+}
+.staples-animate > span:nth-child(16) {
+animation-delay: 3s;
+}
