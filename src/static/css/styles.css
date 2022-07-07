@@ -18,6 +18,15 @@ div {
     color:#244270;
 }
 
+/* .navbar {
+    background: transparent !important;
+}
+
+.navbar.scrolled {
+    background-color: #363636 !important;
+    transition: background-color 200ms linear;
+} */
+
 .jumbotron {
     background: no-repeat center fixed url(https://pbs.twimg.com/media/EQHtKlWXUAAOfL6.jpg:large);
     background-size: cover;
