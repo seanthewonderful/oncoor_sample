@@ -18,21 +18,14 @@ div {
     color:#244270;
 }
 
-/* .navbar {
-    background: transparent !important;
-}
-
-.navbar.scrolled {
-    background-color: #363636 !important;
-    transition: background-color 200ms linear;
-} */
-
 .jumbotron {
     background: no-repeat center fixed url(https://pbs.twimg.com/media/EQHtKlWXUAAOfL6.jpg:large);
     background-size: cover;
     height: 765px;
     margin-bottom: 0px;
     padding: 0px;
+    font-family: 'Baloo Paaji 2', cursive;
+    color:white;
 }
 
 .jumbotron .container {
@@ -78,6 +71,7 @@ div {
 .lead p {
     display: inline-block;
     padding: 2px 10px 0px;
+    font-size: 1em;
 }
 
 .background-charcoal {

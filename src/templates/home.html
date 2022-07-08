@@ -8,9 +8,9 @@
 <div data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -30%" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
 
 <div class="jumbotron" id="jumbotron">
-    <div class="container" style="font-family: 'Baloo Paaji 2', cursive;">
-        <h1>oncoor</h1>
-        <h4>sports marketing</h4>
+    <div class="container">
+        <h1 style="font-size:7em;">oncoor</h1>
+        <h4 class="display-5">sports marketing</h4>
         <div class="lead" ><p>social media</p><p>endorsements</p><p>marketing</p></div>
     </div>
     <div class="overlay"></div>
@@ -42,25 +42,25 @@
 <div class="background-charcoal2" id="charcoal2">
     <div class="row" style="font-family: 'Baloo Paaji 2', cursive;">
         <div class="container form-container pt-5" style="width:80%">
-            <form class="contact-form" method="post" action="#">
-                <input type="hidden" name="csrf_token" value="#">
+            <form class="contact-form" method="post" action="{{ url_for('contact_us') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="floatEmail" placeholder="Email Address">
+                    <input type="email" name="email" class="form-control" id="floatEmail" placeholder="Email Address">
                     <label for="floatEmail">Email Address</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatName" placeholder="Your Name">
+                    <input type="text" name="name" class="form-control" id="floatName" placeholder="Your Name">
                     <label for="floatName">Your Name</label>
                 </div>
-                <fieldset>
+                <!-- <fieldset>
                     <label for="urgency-range" class="form-label pt-4" style="color:white;">How urgent is this message:</label>
                     <input type="range" class="form-range" id="urgency-range" 
                         name="urgency-range" min="0" max="5" step="0.5" value="0"
                         oninput="document.getElementById('urgency-range-label').innerHTML = this.value;"></input>
                     <em id="urgency-range-label" style="color:white;"></em>
-                </fieldset>
+                </fieldset> -->
                 <div class="form-floating mt-3">
-                    <textarea class="form-control" id="floatInquiry" placeholder="Send us a message!" style="height: 125px;"></textarea>
+                    <textarea class="form-control" name="message" id="floatInquiry" placeholder="Send us a message!" style="height: 125px;"></textarea>
                     <label for="floatInquiry">Send us a message!</label>
                 </div>
                 <input type="submit" name="submit" value="Send Message" class="btn btn-primary disabled pt-2">

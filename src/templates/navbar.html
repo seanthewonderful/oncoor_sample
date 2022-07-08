@@ -1,44 +1,45 @@
 <nav class="navbar navbar-expand-lg fixed-top" id="navbar" style="font-family: 'Baloo Paaji 2', cursive; font-size: 1.5em">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="https://i0.wp.com/oncoormarketing.com/wp-content/uploads/2021/10/cropped-cropped-oncoor_logo__1_-removebg-preview.png" alt="oncoor logo" height='25' class="d-inline-block align-text-top">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="nav nav-pills me-auto mb-2 mb-lg-0">
-          <li class="nav-item nav-jumbotron">
-            <a class="nav-link" href="#jumbotron">Home</a>
-          </li>
-          <li class="nav-item nav-charcoal1">
-            <a class="nav-link" href="#charcoal1">Buttons</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#dodger">Dodgers</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#charcoal2">Contact Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#staples">Staples Center</a>
-          </li>
-          <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li> -->
-        </ul>
-        <!-- <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> -->
+  <div class="container-fluid align-items-center justify-content-between">
+      <div class="">
+        <a class="navbar-brand" href="#">
+          <img src="https://i0.wp.com/oncoormarketing.com/wp-content/uploads/2021/10/cropped-cropped-oncoor_logo__1_-removebg-preview.png" alt="oncoor logo" height='25' class="d-inline-block align-text-top">
+        </a>
       </div>
-    </div>
+      <div class="align-items-right">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav nav-pills me-auto mb-2 mb-lg-0">
+            <li class="nav-item nav-charcoal1">
+              <a class="nav-link" href="#charcoal1">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#dodger">Players</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#charcoal2">Brands</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#staples">Collectives</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#staples">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#staples">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </div>
 </nav>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}" role="alert" id="flashMessage">
+            <p>{{ message }}</p>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
