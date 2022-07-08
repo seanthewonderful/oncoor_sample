@@ -5,27 +5,106 @@
 <body data-spy="scroll" data-target="navbar">
 {% block content %}
 
-<div data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -30%" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
-
+<div data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -70%" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+    
 <div class="jumbotron" id="jumbotron">
     <div class="container">
         <h1 style="font-size:7em;">oncoor</h1>
         <h4 class="display-5">sports marketing</h4>
         <div class="lead" ><p>social media</p><p>endorsements</p><p>marketing</p></div>
+        <div class="d-flex">
+            <a class="btn btn-lg shadow-lg inquiry-btn" href="#charcoal2">Inquiries</a>
+        </div>
     </div>
     <div class="overlay"></div>
-    <a href="#staples" class="scroll-down"><i class="fa-solid fa-arrow-down" style="color:black;"></i></a>
+    <!-- <a href="#staples" class="scroll-down"><i class="fa-solid fa-arrow-down" style="color:black;"></i></a> -->
 </div>
 
+
 <div class="background-charcoal" id="charcoal1" data-bs-spy="scroll" data-bs-target="#navbar">
-    <div class="d-flex row" style="width:80%; font-family: 'Baloo Paaji 2', cursive;">
-        <button class="btn btn-primary btn-lg btn-block">you can press this blue button</button>
-        <button class="btn btn-light btn-lg btn-block">you can press this white button</button>
-        <button class="btn btn-secondary btn-lg btn-block">you can even press this gray button</button>
-        <h4 style="padding-top: 50px; color: white;">none of them can take you anywhere.</h4>
+    <div class="container-fluid row" font-family: 'Baloo Paaji 2', cursive;">
         <div class="oncoor-animate">
-            <h2>oncoor will</h2>
-            <h2>oncoor will</h2>
+            <h2>the players</h2>
+            <h2>the players</h2>
+        </div>
+        <div class="container-fluid">
+            <div class="row justify-content-around">
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player') }}">
+                        <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player') }}">
+                        <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player') }}">
+                        <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player') }}">
+                        <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player') }}">
+                        <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player') }}">
+                        <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player') }}">
+                        <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player') }}">
+                        <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player') }}">
+                        <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player') }}">
+                        <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player') }}">
+                        <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player') }}">
+                        <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="background-white" id="about-us" data-bs-spy="scroll" data-bs-target="#navbar">
+    <div class="container">
+        <div class="row align-items-center" style="font-family:'Baloo Paaji 2', cursive;">
+            <div class="col-md-4 p-4">
+                <img class="img-fluid about-img" src="https://i0.wp.com/oncoormarketing.com/wp-content/uploads/2021/10/about-us-img.jpg" alt="Responsive image">
+            </div>
+            <div class="col-md-8 p-4">
+                <h1>about us</h1>
+                <p style="font-size: 1rem;">Oncoor is a marketing agency bridging the gap between athletes and brands. Oncoor represents more than 65 athletes across professional, collegiate and Olympic sports.</p>
+                <p style="font-size: 1rem;">Oncoor was founded in 2017 by Brian Fagan. Since then, Oncoor has emerged as one of the country’s largest sports marketing firms. In July of 2021 the NCAA announced new guidelines allowing collegiate athletes to take advantage of their Name Image and Likeness. These changes have put Oncoor at the forefront of the industry as the country’s largest NIL agency.</p>
+            </div>
         </div>
     </div>
 </div>

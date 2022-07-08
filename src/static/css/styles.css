@@ -26,22 +26,20 @@ div {
     padding: 0px;
     font-family: 'Baloo Paaji 2', cursive;
     color:white;
+    overflow:unset;
 }
-
 .jumbotron .container {
     position: relative;
     top: 28%;
     z-index: 4;
     text-align: center;
 }
-
 .jumbotron .container h1 {
     padding-bottom: 20px;
     border-bottom: 1px solid #FFFFFF;
     border-bottom-color: rgba(255,255,255,0.35);
     display: inline-block;
 }
-
 .jumbotron .overlay {
     background-color: rgb(86, 86, 86);
     position: absolute;
@@ -51,10 +49,9 @@ div {
     right: 0px;
     height: 765px;
     /* margin-bottom: -2px; */
-    opacity: 0.70;
+    opacity: 0.60;
     z-index: 2;
 }
-
 .jumbotron .scroll-down {
     height: 70px;
     width: 90px;
@@ -67,6 +64,19 @@ div {
     font-size: 2em;
     z-index: 6;
 }
+.inquiry-btn {
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #353f4a, #283142);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3b4857, #283141); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #fff;
+    /* border: 3px solid #eee; */
+    z-index: 5;
+}
+.inquiry-btn:hover {
+    background: #141e30a9;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #353f4abe, #283142c1);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3b4857bc, #283141be); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 
 .lead p {
     display: inline-block;
@@ -76,8 +86,8 @@ div {
 
 .background-charcoal {
     position: relative;
-    background: #444444;
-    height: 500px;
+    background: #363636;
+    height: auto;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -86,7 +96,7 @@ div {
 }
 .background-charcoal2 {
     position: relative;
-    background: #444444;
+    background: #363636;
     height: 500px;
     width: 100%;
 }
@@ -96,12 +106,35 @@ div {
     padding: 70px 25px 70px;
 }
 
+
+.background-white {
+    position: relative;
+    background:rgb(226, 226, 226);
+    height: auto;
+
+}
+.about-img {
+    max-height: 450px;
+}
+@media (max-width:768px) {
+    div p {
+        font-size:0.4rem;
+    }
+    .about-img {
+        max-height:200px;
+        width: 30%;
+    }
+}
+
+.oncoor-animate {
+    position:relative;
+}
 .oncoor-animate h2{
     color: #fff;
-    font-size: 5em;
+    font-size: calc(1.525rem + 3.3vw);
     position: absolute;
     left: 50%;
-    bottom: -30%;
+    top: 20%;
     transform: translate(-50%, -50%);
 }
 .oncoor-animate h2:nth-child(1) {
@@ -112,6 +145,17 @@ div {
     color: dodgerblue;
     animation: animate 4s ease-in-out infinite;
 }
+.player-img-div {
+    padding: 5px 5px;
+}
+.player-img {
+    padding:0;
+}
+.player-img:hover {
+    transform: scale(1.2, 1.2);
+    transition: transform 200ms ease;
+}
+
 .dodger-animate h2{
     color: #fff;
     font-size: 5em;

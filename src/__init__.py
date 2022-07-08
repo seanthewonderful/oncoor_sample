@@ -46,6 +46,10 @@ def contact_us():
         flash("Your message has been sent! We will reach back out to you at the email address you provided.", category='dark')
         return redirect(url_for('home'))
     return render_template('home.html')
+
+@app.route("/player")
+def player():
+    return render_template('player.html')
         
 
 if __name__ == "__main__":
