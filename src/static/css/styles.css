@@ -21,7 +21,7 @@ div {
 .jumbotron {
     background: no-repeat center fixed url(https://pbs.twimg.com/media/EQHtKlWXUAAOfL6.jpg:large);
     background-size: cover;
-    height: 765px;
+    height: 100vh;
     margin-bottom: 0px;
     padding: 0px;
     font-family: 'Baloo Paaji 2', cursive;
@@ -47,7 +47,7 @@ div {
     bottom: 0px;
     left: 0px;
     right: 0px;
-    height: 765px;
+    height: 100vh;
     /* margin-bottom: -2px; */
     opacity: 0.60;
     z-index: 2;
