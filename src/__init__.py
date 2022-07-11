@@ -5,6 +5,7 @@ from jinja2 import StrictUndefined
 from flask_wtf.csrf import CSRFProtect
 from os import environ
 import smtplib
+from email.mime.multipart import MIMEMultipart
 from decouple import config
 
 
@@ -15,6 +16,9 @@ app.config["DEBUG_TB_INTERCEPT_REDIRECTS"]=False
 # app.secret_key = config('SECRET_KEY', default='')
 app.secret_key = "secret"
 csrf = CSRFProtect(app)
+
+sender_email = "bigbirthdaybuddyboy@gmail.com"
+receiver_email = "seanthewonderful@gmail.com"
 
 
 @app.route("/")
@@ -32,16 +36,12 @@ def contact_us():
             print("Got here")
             connection.starttls()
             print("start tls")
-            connection.login("bigbirthdaybuddyboy@gmail.com", "fdadisgioynmjxig")
+            connection.login(sender_email, "fdadisgioynmjxig")
             print("connected")
-            connection.sendmail(from_addr="bigbirthdaybuddyboy@gmail.com",
-                                to_addrs="seanthewonderful@gmail.com",
-                                msg=f'''
-                                Subject: Contact Us submission from oncoor.com\n\n
-                                You received a message from the 'Contact Us' form on oncoor.com from {name}:
-                                \n{message}
-                                To reply, send a message to {name}'s email address: {email}
-                                ''')
+            mssg = f'''Subject: Contact Us submission from oncoor.com\n\nYou received a message from the 'Contact Us' form on oncoor.com from {name}:\n{message}\nTo reply, send a message to {name}'s email address: {email}'''
+            connection.sendmail(from_addr=sender_email,
+                                to_addrs=receiver_email,
+                                msg=mssg)
         flash("Your message has been sent! We will reach back out to you at the email address you provided.", category='info')
         return redirect(url_for('home')+"#staples")
     return render_template('home.html')
