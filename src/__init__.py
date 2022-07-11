@@ -28,14 +28,13 @@ def contact_us():
         email = request.form['email']
         message = request.form['message']
         print(message)
-        with smtplib.SMTP("smtp.mail.yahoo.com") as connection:
+        with smtplib.SMTP("smtp.gmail.com", 587) as connection:
             print("Got here")
             connection.starttls()
-            # connection.ehlo()
             print("start tls")
-            connection.login("oncoor@yahoo.com", "9Pythons")
+            connection.login("bigbirthdaybuddyboy@gmail.com", "fdadisgioynmjxig")
             print("connected")
-            connection.sendmail(from_addr="oncoor@yahoo.com",
+            connection.sendmail(from_addr="bigbirthdaybuddyboy@gmail.com",
                                 to_addrs="seanthewonderful@gmail.com",
                                 msg=f'''
                                 Subject: Contact Us submission from oncoor.com\n\n
@@ -43,8 +42,8 @@ def contact_us():
                                 \n{message}
                                 To reply, send a message to {name}'s email address: {email}
                                 ''')
-        flash("Your message has been sent! We will reach back out to you at the email address you provided.", category='dark')
-        return redirect(url_for('home'))
+        flash("Your message has been sent! We will reach back out to you at the email address you provided.", category='info')
+        return redirect(url_for('home')+"#staples")
     return render_template('home.html')
 
 @app.route("/player")
@@ -55,5 +54,4 @@ def player():
 if __name__ == "__main__":
     app.jinja_env.auto_reload = app.debug
     DebugToolbarExtension(app)
-    # connect_to_db(app)
     app.run(debug=True)

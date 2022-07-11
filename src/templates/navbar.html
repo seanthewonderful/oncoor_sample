@@ -15,16 +15,16 @@
               <a class="nav-link" href="#about-us">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#charcoal1">Players</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#dodger">Brands</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#staples">Collectives</a>
+              <a class="nav-link" href="#charcoal1">Players</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#staples">Shop</a>
+              <a class="nav-link" href="#shop">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#charcoal2">Collectives</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#staples">Contact</a>
@@ -34,13 +34,5 @@
       </div>
   </div>
 </nav>
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      {% for category, message in messages %}
-        <div class="alert alert-{{ category }}" role="alert" id="flashMessage">
-            <p>{{ message }}</p>
-        </div>
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
+
 

@@ -133,7 +133,7 @@
             <h2>the players</h2>
             <h2>the players</h2>
         </div>
-        <div class="container-fluid">
+        <div class="players">
             <div class="row justify-content-around">
                 <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
                     <a class="player-img-a" href="{{ url_for('player') }}">
@@ -200,58 +200,159 @@
     </div>
 </div>
 
-<div class="background-charcoal2" id="charcoal2">
-    <div class="row" style="font-family: 'Baloo Paaji 2', cursive;">
+<div class="shop" id="shop" data-bs-spy="scroll" data-bs-target="#navbar">
+    <div class="shop-container">
+        <div class="shop-title" style="font-size: 5vw; font-family: 'Baloo Paaji 2', cursive;">
+            <h1 class="text-center">merch</h1>
+        </div>
+        <div class="row mx-auto my-auto justify-content-center" style="font-family: 'Baloo Paaji 2', cursive;">
+            <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active" height="30vh">
+                        <div class="col-md-3" height="30vh">
+                            <div class="card" height="30vh">
+                                <div class="card-img">
+                                    <img src="https://www.kron4.com/wp-content/uploads/sites/11/2022/02/FootballGettyImages-78457130.jpg" class="shop-img">
+                                </div>
+                                <div class="card-text d-flex row align-self-center align-items-center">
+                                    <h4>Jerry Rice's Football</h4>
+                                    <a class="btn btn-secondary btn-sm">$1499</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="https://3.bp.blogspot.com/-RuxX-0CR4nE/VzFCVBdaoyI/AAAAAAAAHvA/ZBv9m5-FEIkIV_2Bzdm3JBtUxM1oR93vQCLcB/s1600/Insperity%252BChampionship%252BFinal%252BRound.jpg" class="shop-img">
+                                </div>
+                                <div class="card-text d-flex row align-self-center align-items-center">
+                                    <h4>Jesper Parnavek's Cigar</h4>
+                                    <a class="btn btn-secondary btn-sm">$599</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="//via.placeholder.com/500x400/7d2?text=3" class="shop-img">
+                                </div>
+                                <div class="card-text d-flex row align-self-center align-items-center">
+                                    <h4>Jerry Rice's Football</h4>
+                                    <a class="btn btn-secondary btn-sm">$499</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="https://i.pinimg.com/736x/78/11/88/781188f19861bbfa46cb4b633dbe28ee--baby-koala-steering-wheels.jpg" class="shop-img">
+                                </div>
+                                <div class="card-text d-flex row align-self-center align-items-center">
+                                    <h4>Sebastian Vettel's Steering Wheel</h4>
+                                    <a class="btn btn-secondary btn-sm">$899</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="https://st2.depositphotos.com/3803389/7490/v/950/depositphotos_74903905-stock-illustration-back-to-school-supplies-sketchy.jpg" class="shop-img">
+                                </div>
+                                <div class="card-text d-flex row align-self-center align-items-center">
+                                    <h4>Taysom Hill's English Notebook</h4>
+                                    <a class="btn btn-secondary btn-sm">$179</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="https://www.whiskeyriff.com/wp-content/uploads/John-Daly-_Tee-the-Ball-Up_-by-DJ-Steve-Porter-YouTube-770x468.jpg" class="shop-img">
+                                </div>
+                                <div class="card-text d-flex row align-self-center align-items-center">
+                                    <h4>John Daly's Old Beer Can</h4>
+                                    <a class="btn btn-secondary btn-sm">$2.99</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="overlay"></div> -->
+</div>
+
+<div class="background-charcoal2" id="charcoal2" data-bs-spy="scroll" data-bs-target="#navbar">
+    <div class="staples-container" style="font-family: 'Baloo Paaji 2', cursive;">
+        <div class="staples-animate" id="staples">
+            <span>c</span>
+            <span>o</span>
+            <span>l</span>
+            <span>l</span>
+            <span>e</span>
+            <span>c</span>
+            <span>t</span>
+            <span>i</span>
+            <span>v</span>
+            <span>e</span>
+            <span>s</span>
+        </div>
+    </div>
+</div>
+
+<div class="staples-center" id="staples" data-bs-spy="scroll" data-bs-target="#navbar">
+    <div class="row py-3" style="font-family: 'Baloo Paaji 2', cursive;">
+        <h1 class="contact-title text-center pt-4 text-white" style="text-shadow: 0px 0px 25px rgb(0, 99, 156); font-size: 4vw;">contact us</h1>
         <div class="container form-container pt-5" style="width:80%">
             <form class="contact-form" method="post" action="{{ url_for('contact_us') }}">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <div class="form-floating">
+                <div class="form-floating py-2" style="width:50%">
                     <input type="email" name="email" class="form-control" id="floatEmail" placeholder="Email Address">
                     <label for="floatEmail">Email Address</label>
                 </div>
-                <div class="form-floating">
+                <div class="form-floating py-2" style="width:50%">
                     <input type="text" name="name" class="form-control" id="floatName" placeholder="Your Name">
                     <label for="floatName">Your Name</label>
                 </div>
-                <!-- <fieldset>
-                    <label for="urgency-range" class="form-label pt-4" style="color:white;">How urgent is this message:</label>
-                    <input type="range" class="form-range" id="urgency-range" 
-                        name="urgency-range" min="0" max="5" step="0.5" value="0"
-                        oninput="document.getElementById('urgency-range-label').innerHTML = this.value;"></input>
-                    <em id="urgency-range-label" style="color:white;"></em>
-                </fieldset> -->
                 <div class="form-floating mt-3">
                     <textarea class="form-control" name="message" id="floatInquiry" placeholder="Send us a message!" style="height: 125px;"></textarea>
                     <label for="floatInquiry">Send us a message!</label>
+                    <input type="submit" name="submit" value="Send Message" class="btn btn-primary my-2" style="box-shadow:5px 0px 15px rgb(183, 149, 0);">
                 </div>
-                <input type="submit" name="submit" value="Send Message" class="btn btn-primary disabled pt-2">
             </form>
         </div>
-
     </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert" id="flashMessage">
+                    <p class="text-center">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
 </div>
 
-<div class="staples-center" id="staples">
-    <div class="staples-container" style="font-family: 'Baloo Paaji 2', cursive;">
-        <div class="staples-animate" id="staples">
-            <span>o</span>
-            <span>t</span>
-            <span>h</span>
-            <span>e</span>
-            <span>r</span>
-            <span>&nbsp</span>
-            <span>s</span>
-            <span>t</span>
-            <span>u</span>
-            <span>f</span>
-            <span>f</span>
-            <span>&nbsp</span>
-            <span>t</span>
-            <span>o</span>
-            <span>o</span>
-        </div>
-    </div>
-</div>
+
+
 
 </div>
 {% endblock %}
