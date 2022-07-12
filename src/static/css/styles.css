@@ -614,3 +614,15 @@ animation-delay: 3s;
     transform: scale(1.2, 1.2);
     transition: transform 200ms ease;
 }
+.shop-bg {
+    position: relative;
+    background:#636363;
+    /* background: rgb(226, 226, 226); */
+    /* top: 15%; */
+    padding-top: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: flex-start;
+}

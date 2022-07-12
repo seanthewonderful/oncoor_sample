@@ -6,7 +6,8 @@ from flask_wtf.csrf import CSRFProtect
 from os import environ
 import smtplib
 from decouple import config
-from model import player_data
+from model import player_data, i1_list
+import random
 
 
 app = Flask(__name__)
@@ -56,7 +57,12 @@ def player(name):
                 return player
     player = find_player(name)
     return render_template('player.html', player=player)
-        
+
+@app.endpoint("shop")
+@app.route("/shop")
+def shop():
+    items = random.sample(i1_list, len(i1_list))
+    return render_template('shop.html', items=items)
 
 if __name__ == "__main__":
     app.jinja_env.auto_reload = app.debug

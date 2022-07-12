@@ -1,7 +1,54 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ player['name'] }}{% endblock %}
+{% block title %}Oncoor Store{% endblock %}
 
 <body data-spy="scroll" data-target="navbar">
 
 {% block content %}
+
+<div class="shop-bg" id="charcoal1" data-bs-spy="scroll" data-bs-target="#navbar">
+    <div class="container-fluid row" font-family: 'Baloo Paaji 2', cursive;">
+        <div class="oncoor-animate">
+            <h2>Merch</h2>
+            <h2>Merch</h2>
+        </div>
+
+        <div class="d-flex pt-5" id="player-shop">
+                <div class="row justify-content-center">
+                    {% for item in items %}
+                    <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+
+                        <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                <img src="{{ item[2] }}" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                <img src="{{ item[3] }}" class="d-block w-100" alt="...">
+                                </div>
+                            </div>
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                            </div>
+
+                        <div class="pt-4">
+                            <h4 class="shop-item">{{ item[0] }}</h4>
+                            <h5 class="price">${{ item[1] }}</h5>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+</body>
