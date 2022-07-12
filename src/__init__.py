@@ -1,13 +1,11 @@
-from os import environ
+
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
 from flask_wtf.csrf import CSRFProtect
-from os import environ
 import smtplib
 from decouple import config
 from model import player_data, items
-import random
 
 
 app = Flask(__name__)
