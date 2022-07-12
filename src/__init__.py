@@ -5,7 +5,7 @@ from jinja2 import StrictUndefined
 from flask_wtf.csrf import CSRFProtect
 import smtplib
 from decouple import config
-from model import player_data, items
+from .model import player_data, items
 
 
 app = Flask(__name__)
