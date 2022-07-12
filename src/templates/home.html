@@ -135,7 +135,14 @@
         </div>
         <div class="players">
             <div class="row justify-content-around">
+                {% for player in players %}
                 <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="player-img-a" href="{{ url_for('player', name=player['name']) }}">
+                        <img class="img-fluid player-img" src="{{ player['img1'] }}" alt="Responsive image">
+                    </a>
+                </div>
+                {% endfor %}
+                {# <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
                     <a class="player-img-a" href="{{ url_for('player') }}">
                         <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
                     </a>
@@ -195,6 +202,7 @@
                         <img class="img-fluid player-img" src="https://cdn.vox-cdn.com/thumbor/lRYYt1bqtKRXm2L3azijGh4ZKe0=/0x0:2916x3667/1200x800/filters:focal(1104x761:1570x1227)/cdn.vox-cdn.com/uploads/chorus_image/image/68555613/1292297752.5.jpg" alt="Responsive image">
                     </a>
                 </div>
+                #}
             </div>
         </div>
     </div>

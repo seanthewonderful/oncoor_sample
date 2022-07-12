@@ -5,8 +5,8 @@ from jinja2 import StrictUndefined
 from flask_wtf.csrf import CSRFProtect
 from os import environ
 import smtplib
-from email.mime.multipart import MIMEMultipart
 from decouple import config
+from model import player_data
 
 
 app = Flask(__name__)
@@ -19,11 +19,11 @@ csrf = CSRFProtect(app)
 
 sender_email = "bigbirthdaybuddyboy@gmail.com"
 receiver_email = "seanthewonderful@gmail.com"
-
+gmail_app_pw = ""
 
 @app.route("/")
 def home():
-    return render_template('home.html')
+    return render_template('home.html', players=player_data)
 
 @app.route("/contact_us", methods=["GET", "POST"])
 def contact_us():
@@ -46,9 +46,10 @@ def contact_us():
         return redirect(url_for('home')+"#staples")
     return render_template('home.html')
 
-@app.route("/player")
-def player():
-    return render_template('player.html')
+@app.route("/player/<name>")
+def player(name):
+    player = player_data['name' == name]
+    return render_template('player.html', player=player)
         
 
 if __name__ == "__main__":
