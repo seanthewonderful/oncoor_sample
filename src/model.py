@@ -19,4 +19,10 @@ with open('src/players.csv', 'r') as players:
     player_data = list(csv.DictReader(players))
     
 # b = player_data['name' == 'Bella Wright']['shop_item1']
-# print(player_data)
+# print(player_data.name)
+player = player_data['name' == 'Calvin Knapp']
+name = "Calvin Knapp"
+for player in player_data:
+    if player['name'] == name:
+        print(player)
+# print(player)

@@ -1,4 +1,5 @@
 let items = document.querySelectorAll('.carousel .carousel-item')
+// let shopImg = document.getElementById('shop-img')
 
 items.forEach((el) => {
     const minPerSlide = 4
@@ -13,3 +14,11 @@ items.forEach((el) => {
         next = next.nextElementSibling
     }
 })
+
+// function hover(shopImg) {
+//     shopImg.setAttribute('src', "{{ player['shop_item1_img2'] }}");
+//     }
+  
+// function unhover(shopImg) {
+//     shopImg.setAttribute('src', "{{ player['shop_item1_img1'] }}");
+//     }

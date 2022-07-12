@@ -48,7 +48,11 @@ def contact_us():
 
 @app.route("/player/<name>")
 def player(name):
-    player = player_data['name' == name]
+    def find_player(name):
+        for player in player_data:
+            if player['name'] == name:
+                return player
+    player = find_player(name)
     return render_template('player.html', player=player)
         
 

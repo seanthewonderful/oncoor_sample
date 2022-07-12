@@ -4,7 +4,6 @@ body {
     background: #535353;
     line-height: 1.5;
 }
-
 div {
     display: block;
 }
@@ -189,8 +188,8 @@ div {
 }
 
 .players {
-    max-height: 600px;
-    overflow: scroll;
+    height: 100vh;
+    /* overflow: scroll; */
     /* background:rgba(24, 24, 24, 0.15); */
     /* scrollbar-color: transparent transparent; */
 }
@@ -463,4 +462,149 @@ animation-delay: 3s;
 .carousel-inner .carousel-item-end,
 .carousel-inner .carousel-item-start { 
   transform: translateX(0);
+}
+
+.football {
+    background: no-repeat center fixed url(https://static.clubs.nfl.com/image/private/t_editorial_landscape_12_desktop/packers/dskndackqrmml5oi9136);
+    background-size: cover;
+    height: 120vh;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-family: 'Baloo Paaji 2', cursive;
+    color:white;
+    overflow:unset;
+}
+.football .container {
+    position: relative;
+    top: 10%;
+    width: 100vw;
+    z-index: 4;
+    text-align: center;
+}
+.football .container h1 {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #FFFFFF;
+    border-bottom-color: rgba(255,255,255,0.35);
+    display: inline-block;
+}
+.football .overlay {
+    background-color: rgb(86, 86, 86);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 120vh;
+    /* margin-bottom: -2px; */
+    opacity: 0.60;
+    z-index: 2;
+}
+.ski {
+    background: no-repeat center fixed url(https://newyorkrentalbyowner.com/blog/wp-content/uploads/2019/09/Skiing-in-Upstate-New-York-10-Best-Ski-Resorts-For-Your-Winter-Vacation.jpeg);
+    background-size: cover;
+    height: 100vh;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-family: 'Baloo Paaji 2', cursive;
+    color:white;
+    overflow:unset;
+}
+.ski .container {
+    position: relative;
+    top: 28%;
+    z-index: 4;
+    text-align: center;
+}
+.ski .container h1 {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #FFFFFF;
+    border-bottom-color: rgba(255,255,255,0.35);
+    display: inline-block;
+}
+.ski .overlay {
+    background-color: rgb(86, 86, 86);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 100vh;
+    /* margin-bottom: -2px; */
+    opacity: 0.60;
+    z-index: 2;
+}
+.basketball {
+    background: no-repeat center fixed url(https://d3cin4duo2vkym.cloudfront.net/images/2020/2/7/mbb_duke_louisville_20200118_186.jpg);
+    background-size: cover;
+    height: 100vh;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-family: 'Baloo Paaji 2', cursive;
+    color:white;
+    overflow:unset;
+}
+.basketball .container {
+    position: relative;
+    top: 28%;
+    z-index: 4;
+    text-align: center;
+}
+.basketball .container h1 {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #FFFFFF;
+    border-bottom-color: rgba(255,255,255,0.35);
+    display: inline-block;
+}
+.basketball .overlay {
+    background-color: rgb(86, 86, 86);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 100vh;
+    /* margin-bottom: -2px; */
+    opacity: 0.60;
+    z-index: 2;
+}
+
+.baseball {
+    background: no-repeat center fixed url(https://www.helptostudy.com/wp-content/uploads/2021/05/Best-College-Baseball-Stadiums-6.jpg);
+    background-size: cover;
+    height: 100vh;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-family: 'Baloo Paaji 2', cursive;
+    color:white;
+    overflow:unset;
+}
+.baseball .container {
+    position: relative;
+    top: 28%;
+    z-index: 4;
+    text-align: center;
+}
+.baseball .container h1 {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #FFFFFF;
+    border-bottom-color: rgba(255,255,255,0.35);
+    display: inline-block;
+}
+.baseball .overlay {
+    background-color: rgb(86, 86, 86);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 100vh;
+    /* margin-bottom: -2px; */
+    opacity: 0.60;
+    z-index: 2;
+}
+
+.player-shop {
+    padding-top: 2%;
+    border-top: 1px solid #FFFFFF;
+    border-top-color: rgba(255,255,255,0.35);
 }
