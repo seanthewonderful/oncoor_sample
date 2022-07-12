@@ -18,7 +18,7 @@ csrf = CSRFProtect(app)
 # app.add_url_rule("/player", endpoint="player")
 
 sender_email = "bigbirthdaybuddyboy@gmail.com"
-receiver_email = "seanthewonderful@gmail.com"
+receiver_email = "briandfagan@gmail.com"
 gmail_app_pw = ""
 
 @app.route("/")
