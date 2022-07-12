@@ -22,6 +22,8 @@ i1_list = list(zip(i1, i1_price, i1_img, i1_img2))
 # print(random.sample(i1_list, len(i1_list)))
 # print(i1_list[0][0])
 
+items = random.sample(i1_list, len(i1_list))
+
 
 with open('src/players.csv', 'r') as players:
     player_data = list(csv.DictReader(players))

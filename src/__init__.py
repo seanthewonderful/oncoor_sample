@@ -6,7 +6,7 @@ from flask_wtf.csrf import CSRFProtect
 from os import environ
 import smtplib
 from decouple import config
-from model import player_data, i1_list
+from model import player_data, items
 import random
 
 
@@ -25,7 +25,8 @@ gmail_app_pw = ""
 
 @app.route("/")
 def home():
-    return render_template('home.html', players=player_data)
+    return render_template('home.html', players=player_data,
+                                        items=items)
 
 @app.route("/contact_us", methods=["GET", "POST"])
 def contact_us():
@@ -61,7 +62,6 @@ def player(name):
 @app.endpoint("shop")
 @app.route("/shop")
 def shop():
-    items = random.sample(i1_list, len(i1_list))
     return render_template('shop.html', items=items)
 
 if __name__ == "__main__":

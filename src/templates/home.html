@@ -14,7 +14,7 @@
         <h4 class="display-5">sports marketing</h4>
         <div class="lead" ><p>social media</p><p>endorsements</p><p>marketing</p></div>
         <div class="d-flex">
-            <a class="btn btn-lg inquiry-btn" href="#contact-us">inquiries</a>
+            <a class="btn btn-lg inquiry-btn" href="#staples">inquiries</a>
         </div>
     </div>
     <!-- <a href="#staples" class="scroll-down"><i class="fa-solid fa-arrow-down" style="color:black;"></i></a> -->
@@ -36,7 +36,8 @@
 </div>
 
 <div class="dodger-stadium" id="dodger" data-bs-spy="scroll" data-bs-target="#navbar">
-    <div class="dodger-div" style="overflow:hidden;">
+    <div class="overlay"></div>
+    <div class="dodger-div">
         <div class="brands-title" font-family: 'Baloo Paaji 2', cursive;">
             <p class="text-center">brands</p>
         </div>
@@ -148,6 +149,7 @@
 </div>
 
 <div class="shop" id="shop" data-bs-spy="scroll" data-bs-target="#navbar">
+    <div class="overlay"></div>
     <div class="shop-container">
         <div class="shop-title" style="font-size: 5vw; font-family: 'Baloo Paaji 2', cursive;">
             <h1 class="text-center">merch</h1>
@@ -162,77 +164,28 @@
                                     <img src="https://www.kron4.com/wp-content/uploads/sites/11/2022/02/FootballGettyImages-78457130.jpg" class="shop-img">
                                 </div>
                                 <div class="card-text d-flex row align-self-center align-items-center">
-                                    <h4>Jerry Rice's Football</h4>
-                                    <a class="btn btn-secondary btn-sm">$1499</a>
+                                    <h4>Visit the full shop</h4>
+                                    <a class="btn btn-secondary btn-sm" href="{{ url_for('shop') }}">Click</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {% for item in items %}
                     <div class="carousel-item">
                         <div class="col-md-3">
                             <div class="card">
                                 <div class="card-img">
-                                    <img src="https://3.bp.blogspot.com/-RuxX-0CR4nE/VzFCVBdaoyI/AAAAAAAAHvA/ZBv9m5-FEIkIV_2Bzdm3JBtUxM1oR93vQCLcB/s1600/Insperity%252BChampionship%252BFinal%252BRound.jpg" class="shop-img">
+                                    <img src="{{ item[2] }}" class="shop-img">
                                 </div>
                                 <div class="card-text d-flex row align-self-center align-items-center">
-                                    <h4>Jesper Parnavek's Cigar</h4>
-                                    <a class="btn btn-secondary btn-sm">$599</a>
+                                    <h4>{{ item[0] }}</h4>
+                                    <a class="btn btn-secondary btn-sm" href="{{ url_for('shop') }}">{{ item[1] }}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-img">
-                                    <img src="//via.placeholder.com/500x400/7d2?text=3" class="shop-img">
-                                </div>
-                                <div class="card-text d-flex row align-self-center align-items-center">
-                                    <h4>Jerry Rice's Football</h4>
-                                    <a class="btn btn-secondary btn-sm">$499</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-img">
-                                    <img src="https://i.pinimg.com/736x/78/11/88/781188f19861bbfa46cb4b633dbe28ee--baby-koala-steering-wheels.jpg" class="shop-img">
-                                </div>
-                                <div class="card-text d-flex row align-self-center align-items-center">
-                                    <h4>Sebastian Vettel's Steering Wheel</h4>
-                                    <a class="btn btn-secondary btn-sm">$899</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-img">
-                                    <img src="https://st2.depositphotos.com/3803389/7490/v/950/depositphotos_74903905-stock-illustration-back-to-school-supplies-sketchy.jpg" class="shop-img">
-                                </div>
-                                <div class="card-text d-flex row align-self-center align-items-center">
-                                    <h4>Taysom Hill's English Notebook</h4>
-                                    <a class="btn btn-secondary btn-sm">$179</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-img">
-                                    <img src="https://www.whiskeyriff.com/wp-content/uploads/John-Daly-_Tee-the-Ball-Up_-by-DJ-Steve-Porter-YouTube-770x468.jpg" class="shop-img">
-                                </div>
-                                <div class="card-text d-flex row align-self-center align-items-center">
-                                    <h4>John Daly's Old Beer Can</h4>
-                                    <a class="btn btn-secondary btn-sm">$2.99</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+                    
                 </div>
                 <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -243,7 +196,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="overlay"></div> -->
 </div>
 
 <div class="background-charcoal2" id="charcoal2" data-bs-spy="scroll" data-bs-target="#navbar">

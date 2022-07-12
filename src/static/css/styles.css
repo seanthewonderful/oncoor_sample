@@ -180,10 +180,10 @@ div {
 }
 .oncoor-animate h2:nth-child(1) {
     color: transparent;
-    -webkit-text-stroke: 2px dodgerblue;
+    -webkit-text-stroke: 2px rgb(202, 202, 202);
 }
 .oncoor-animate h2:nth-child(2) {
-    color: dodgerblue;
+    color: rgba(255, 255, 255, 0.808);
     animation: animate 4s ease-in-out infinite;
 }
 
@@ -235,6 +235,7 @@ div {
 }
 
 .dodger-stadium {
+    position: relative;
     background: no-repeat center fixed url(https://hermosawavephotography.com/assets/images/2019/1907_XF100698-HDR.jpg);
     height: 600px;
     opacity: 80%;
@@ -248,13 +249,27 @@ div {
     /* overflow: hidden; */
 }
 .dodger-div {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     /* overflow: hidden; */
+    z-index: 5;
+}
+.dodger-stadium .overlay {
+    background-color: rgb(86, 86, 86);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 600px;
+    /* margin-bottom: -2px; */
+    opacity: 0.50;
+    z-index: 1;
 }
 .brands-title {
     color: whitesmoke;
@@ -299,7 +314,7 @@ div {
 
 .shop {
     position: relative;
-    background: no-repeat center fixed url(https://wallpaperaccess.com/full/1354084.jpg);
+    background: no-repeat center fixed url(https://scx2.b-cdn.net/gfx/news/hires/2013/5-thescienceof.jpg);
     height: 600px;
     background-size: cover;
     margin-bottom: 0px;
@@ -312,6 +327,7 @@ div {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    z-index: 2;
 }
 .shop-title {
     color: #FFF;
@@ -619,7 +635,7 @@ animation-delay: 3s;
     background:#636363;
     /* background: rgb(226, 226, 226); */
     /* top: 15%; */
-    padding-top: 15%;
+    padding-top: 11%;
     width: 100%;
     display: flex;
     justify-content: space-around;
