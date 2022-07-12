@@ -11,6 +11,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="nav nav-pills me-auto mb-2 mb-lg-0">
+            {% if request.url_rule.endpoint == "player" %} 
+
+            <li class="nav-item">
+              <a class="nav-link" href="#player-shop">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact-us">Contact Us!</a>
+            </li>
+
+            {% else %}
             <li class="nav-item nav-charcoal1">
               <a class="nav-link" href="#about-us">About Us</a>
             </li>
@@ -28,8 +38,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#staples">Contact</a>
-            </li>
-          </ul>
+              {% endif %}
+            </ul>
+          </li>
         </div>
       </div>
   </div>

@@ -465,9 +465,10 @@ animation-delay: 3s;
 }
 
 .football {
+    position: relative;
     background: no-repeat center fixed url(https://static.clubs.nfl.com/image/private/t_editorial_landscape_12_desktop/packers/dskndackqrmml5oi9136);
     background-size: cover;
-    height: 120vh;
+    height: 140vh;
     margin-bottom: 0px;
     padding: 0px;
     font-family: 'Baloo Paaji 2', cursive;
@@ -475,8 +476,8 @@ animation-delay: 3s;
     overflow:unset;
 }
 .football .container {
-    position: relative;
-    top: 10%;
+    position:relative;
+    padding-top: 60px;
     width: 100vw;
     z-index: 4;
     text-align: center;
@@ -494,15 +495,15 @@ animation-delay: 3s;
     bottom: 0px;
     left: 0px;
     right: 0px;
-    height: 120vh;
     /* margin-bottom: -2px; */
     opacity: 0.60;
     z-index: 2;
 }
 .ski {
+    position: relative;
     background: no-repeat center fixed url(https://newyorkrentalbyowner.com/blog/wp-content/uploads/2019/09/Skiing-in-Upstate-New-York-10-Best-Ski-Resorts-For-Your-Winter-Vacation.jpeg);
     background-size: cover;
-    height: 100vh;
+    height: 140vh;
     margin-bottom: 0px;
     padding: 0px;
     font-family: 'Baloo Paaji 2', cursive;
@@ -510,8 +511,9 @@ animation-delay: 3s;
     overflow:unset;
 }
 .ski .container {
-    position: relative;
-    top: 28%;
+    position:relative;
+    padding-top: 60px;
+    width: 100vw;
     z-index: 4;
     text-align: center;
 }
@@ -528,15 +530,15 @@ animation-delay: 3s;
     bottom: 0px;
     left: 0px;
     right: 0px;
-    height: 100vh;
     /* margin-bottom: -2px; */
     opacity: 0.60;
     z-index: 2;
 }
 .basketball {
+    position: relative;
     background: no-repeat center fixed url(https://d3cin4duo2vkym.cloudfront.net/images/2020/2/7/mbb_duke_louisville_20200118_186.jpg);
     background-size: cover;
-    height: 100vh;
+    height: 140vh;
     margin-bottom: 0px;
     padding: 0px;
     font-family: 'Baloo Paaji 2', cursive;
@@ -544,8 +546,9 @@ animation-delay: 3s;
     overflow:unset;
 }
 .basketball .container {
-    position: relative;
-    top: 28%;
+    position:relative;
+    padding-top: 60px;
+    width: 100vw;
     z-index: 4;
     text-align: center;
 }
@@ -562,16 +565,15 @@ animation-delay: 3s;
     bottom: 0px;
     left: 0px;
     right: 0px;
-    height: 100vh;
     /* margin-bottom: -2px; */
     opacity: 0.60;
     z-index: 2;
 }
-
 .baseball {
+    position: relative;
     background: no-repeat center fixed url(https://www.helptostudy.com/wp-content/uploads/2021/05/Best-College-Baseball-Stadiums-6.jpg);
     background-size: cover;
-    height: 100vh;
+    height: 140vh;
     margin-bottom: 0px;
     padding: 0px;
     font-family: 'Baloo Paaji 2', cursive;
@@ -579,8 +581,9 @@ animation-delay: 3s;
     overflow:unset;
 }
 .baseball .container {
-    position: relative;
-    top: 28%;
+    position:relative;
+    padding-top: 60px;
+    width: 100vw;
     z-index: 4;
     text-align: center;
 }
@@ -597,7 +600,6 @@ animation-delay: 3s;
     bottom: 0px;
     left: 0px;
     right: 0px;
-    height: 100vh;
     /* margin-bottom: -2px; */
     opacity: 0.60;
     z-index: 2;
@@ -607,4 +609,8 @@ animation-delay: 3s;
     padding-top: 2%;
     border-top: 1px solid #FFFFFF;
     border-top-color: rgba(255,255,255,0.35);
+}
+.shop-img:hover {
+    transform: scale(1.2, 1.2);
+    transition: transform 200ms ease;
 }

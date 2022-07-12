@@ -16,6 +16,7 @@ app.config["DEBUG_TB_INTERCEPT_REDIRECTS"]=False
 # app.secret_key = config('SECRET_KEY', default='')
 app.secret_key = "secret"
 csrf = CSRFProtect(app)
+# app.add_url_rule("/player", endpoint="player")
 
 sender_email = "bigbirthdaybuddyboy@gmail.com"
 receiver_email = "seanthewonderful@gmail.com"
@@ -46,6 +47,7 @@ def contact_us():
         return redirect(url_for('home')+"#staples")
     return render_template('home.html')
 
+@app.endpoint("player")
 @app.route("/player/<name>")
 def player(name):
     def find_player(name):
