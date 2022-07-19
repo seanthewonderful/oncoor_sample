@@ -124,11 +124,11 @@ div {
     font-size: 1em;
 }
 
-.background-charcoal {
+.player_div {
     position: relative;
     background:#636363;
     /* background: rgb(226, 226, 226); */
-    height: auto;
+    height: fit;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -141,7 +141,7 @@ div {
     height: 500px;
     width: 100%;
 }
-.background-charcoal .row {
+.player_div .row {
     position: relative;
     text-align: center;
     padding: 70px 25px 70px;
@@ -188,7 +188,7 @@ div {
 }
 
 .players {
-    height: 100vh;
+    height: fit-content;
     /* overflow: scroll; */
     /* background:rgba(24, 24, 24, 0.15); */
     /* scrollbar-color: transparent transparent; */

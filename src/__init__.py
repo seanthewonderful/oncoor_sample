@@ -2,6 +2,7 @@
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
+from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 import smtplib
 from decouple import config
@@ -11,14 +12,18 @@ from model import player_data, items
 app = Flask(__name__)
 app.jinja_env.undefined = StrictUndefined
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"]=False
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///oncoor_db.db'
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SECRET_KEY"] = "secretsecrets"
+db = SQLAlchemy(app)
 # app.secret_key = environ["SECRET_KEY"]
 # app.secret_key = config('SECRET_KEY', default='')
-app.secret_key = "secret"
+# app.secret_key = "secret"
 csrf = CSRFProtect(app)
 # app.add_url_rule("/player", endpoint="player")
 
 sender_email = "bigbirthdaybuddyboy@gmail.com"
-receiver_email = "briandfagan@gmail.com"
+receiver_email = "seanthewonderful@gmail.com"
 gmail_app_pw = ""
 
 @app.route("/")
@@ -34,17 +39,15 @@ def contact_us():
         message = request.form['message']
         print(message)
         with smtplib.SMTP("smtp.gmail.com", 587) as connection:
-            print("Got here")
             connection.starttls()
-            print("start tls")
             connection.login(sender_email, "fdadisgioynmjxig")
-            print("connected")
             mssg = f'''Subject: Contact Us submission from oncoor.com\n\nYou received a message from the 'Contact Us' form on oncoor.com from {name}:\n{message}\nTo reply, send a message to {name}'s email address: {email}'''
             connection.sendmail(from_addr=sender_email,
                                 to_addrs=receiver_email,
                                 msg=mssg)
         flash("Your message has been sent! We will reach back out to you at the email address you provided.", category='info')
-        return redirect(url_for('home')+"#staples")
+        # return redirect(url_for('home')+"#staples")
+        return redirect(request.referrer)
     return render_template('home.html')
 
 @app.endpoint("player")
