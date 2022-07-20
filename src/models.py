@@ -1,7 +1,8 @@
 import pandas
 import csv
 import random
-from __init__ import db, app
+from flask_sqlalchemy import SQLAlchemy
+
 
 df = pandas.read_csv('src/players.csv')
 
@@ -38,13 +39,16 @@ with open('src/players.csv', 'r') as players:
 #         print(player)
 # print(player)
 
+
+db = SQLAlchemy()
+
 class Player(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(40), index=True, unique=False)
-    last_name = db.Column(db.String(40), index=True, unique=False)
-    school = db.Column(db.String(80), index=True, unique=False)
-    sport = db.Column(db.String(40), index=True, unique=False)
-    position = db.Column(db.String(50))
+    first_name = db.Column(db.String(40))
+    last_name = db.Column(db.String(40))
+    school = db.Column(db.String(80))
+    sport = db.Column(db.String(40))
+    position = db.Column(db.String(50), nullable=True)
     img1_url = db.Column(db.String(500))
     img2_url = db.Column(db.String(500))
     shop_items = db.relationship('Shop Item', backref='player', lazy='dynamic')
@@ -54,9 +58,27 @@ class Player(db.Model):
     
 class ShopItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(140), index=True, unique=True)
+    name = db.Column(db.String(140))
     price = db.Column(db.Numeric(precision=6, scale=2))
     img1_url = db.Column(db.String(1000))
     img2_url = db.Column(db.String(1000))
-    player_id = db.Column(db.Integer, db.ForeignKey('player.id'))
+    player_id = db.Column(db.Integer, db.ForeignKey('player.id'), nullable=True)
     
+    def __repr__(self):
+        return f"Shop item {self.name}, player_id={self.player_id}"
+    
+    
+sean = Player(first_name='Sean',
+              last_name='Fagan',
+              school='BYU',
+              sport='Baseball',
+              position='Catcher',
+              img1_url='#',
+              img2_url='#',
+              )
+bat = ShopItem(name='Seans Bat',
+               price=29.00,
+               img1_url='#',
+               img2_url='#',
+               player='sean'
+               )

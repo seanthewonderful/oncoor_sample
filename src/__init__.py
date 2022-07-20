@@ -6,19 +6,18 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 import smtplib
 from decouple import config
-from model import player_data, items
+from models import player_data, items, db
 
 
 app = Flask(__name__)
 app.jinja_env.undefined = StrictUndefined
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"]=False
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///oncoor_db.db'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///oncoorDB.db'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = "secretsecrets"
-db = SQLAlchemy(app)
-# app.secret_key = environ["SECRET_KEY"]
-# app.secret_key = config('SECRET_KEY', default='')
-# app.secret_key = "secret"
+
+db.init_app(app)
+
 csrf = CSRFProtect(app)
 # app.add_url_rule("/player", endpoint="player")
 
@@ -37,7 +36,6 @@ def contact_us():
         name = request.form['name']
         email = request.form['email']
         message = request.form['message']
-        print(message)
         with smtplib.SMTP("smtp.gmail.com", 587) as connection:
             connection.starttls()
             connection.login(sender_email, "fdadisgioynmjxig")
