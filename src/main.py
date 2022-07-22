@@ -1,12 +1,17 @@
 
+from dataclasses import dataclass
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 import smtplib
-from decouple import config
-from models import player_data, items, db
+# from decouple import config
+import csv
+import random
+import pandas
+from form import AddPlayer
+from models import Player, ShopItem, db
 
 
 app = Flask(__name__)
@@ -16,7 +21,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///oncoorDB.db'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = "secretsecrets"
 
-db.init_app(app)
+# db.init_app(app)
 
 csrf = CSRFProtect(app)
 # app.add_url_rule("/player", endpoint="player")
@@ -24,6 +29,38 @@ csrf = CSRFProtect(app)
 sender_email = "bigbirthdaybuddyboy@gmail.com"
 receiver_email = "seanthewonderful@gmail.com"
 gmail_app_pw = ""
+
+with open('src/players.csv', 'r') as players:
+    player_data = list(csv.DictReader(players))
+
+df = pandas.read_csv('src/players.csv')
+i1 = df.shop_item1.to_list()
+i1_price = df.shop_item1_price.to_list()
+i1_img = df.shop_item1_img1.to_list()
+i1_img2 = df.shop_item1_img2.to_list()
+i1_list = list(zip(i1, i1_price, i1_img, i1_img2))
+items = random.sample(i1_list, len(i1_list))
+
+
+def add_player():
+    form = AddPlayer()
+    if form.validate_on_submit():
+        new_player = Player(
+            first_name = form.first_name.data,
+            last_name = form.last_name.data,
+            school = form.schoo.data,
+            sport = form.sport.data,
+            position = form.position.data,
+            img1_url = form.img1_url.data,
+            img2_url = form.img2_url.data            
+        )
+        db.session.add(new_player)
+        db.session.commit()
+        flash("Player added", category="success")
+    
+def add_shop_item():
+    pass
+
 
 @app.route("/")
 def home():

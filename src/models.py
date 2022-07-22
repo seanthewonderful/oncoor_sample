@@ -2,7 +2,7 @@ import pandas
 import csv
 import random
 from flask_sqlalchemy import SQLAlchemy
-
+from src.main import app
 
 df = pandas.read_csv('src/players.csv')
 
@@ -40,7 +40,7 @@ with open('src/players.csv', 'r') as players:
 # print(player)
 
 
-db = SQLAlchemy()
+db = SQLAlchemy(app)
 
 class Player(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -51,7 +51,7 @@ class Player(db.Model):
     position = db.Column(db.String(50), nullable=True)
     img1_url = db.Column(db.String(500))
     img2_url = db.Column(db.String(500))
-    shop_items = db.relationship('Shop Item', backref='player', lazy='dynamic')
+    shop_items = db.relationship('ShopItem', backref='player')
     
     def __repr__(self):
         return f"{self.first_name} {self.last_name}, {self.position} at {self.school}"
@@ -67,6 +67,8 @@ class ShopItem(db.Model):
     def __repr__(self):
         return f"Shop item {self.name}, player_id={self.player_id}"
     
+
+    
     
 sean = Player(first_name='Sean',
               last_name='Fagan',
@@ -74,11 +76,15 @@ sean = Player(first_name='Sean',
               sport='Baseball',
               position='Catcher',
               img1_url='#',
-              img2_url='#',
+              img2_url='#'
               )
-bat = ShopItem(name='Seans Bat',
-               price=29.00,
+helmet = ShopItem(name='Seans Helmet',
+               price="29.00",
                img1_url='#',
                img2_url='#',
-               player='sean'
+               player_id=(Player.query.filter_by(first_name="Sean").first()).id
                )
+
+if __name__ == "__main__":
+    app.jinja_env.auto_reload = app.debug
+    app.run(debug=True)
