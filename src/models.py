@@ -4,7 +4,12 @@ import random
 from flask_sqlalchemy import SQLAlchemy
 from src.main import app
 
+
+db = SQLAlchemy(app)
+
 df = pandas.read_csv('src/players.csv')
+players_df = pandas.read_csv('src/players.csv', usecols=["name", "school", "sport", "img1", "img2"])
+
 
 # print(df['name'].to_list())
 # print(df.name)
@@ -29,18 +34,33 @@ items = random.sample(i1_list, len(i1_list))
 
 with open('src/players.csv', 'r') as players:
     player_data = list(csv.DictReader(players))
-    
-# b = player_data['name' == 'Bella Wright']['shop_item1']
-# print(player_data.name)
-
-# name = "Calvin Knapp"
-# for player in player_data:
-#     if player['name'] == name:
-#         print(player)
-# print(player)
 
 
-db = SQLAlchemy(app)
+def seed_db():
+    for each in player_data:
+        new_player = Player(
+            first_name = each['name'].split()[0],
+            last_name = each['name'].split()[1],
+            school = each['school'],
+            sport = each['sport'],
+            img1_url = each['img1'],
+            img2_url = each['img2']
+        )
+        db.session.add(new_player)
+        db.session.commit()
+        
+def seed_shop():
+    for each in player_data:
+        new_item = ShopItem(
+            name = each['shop_item1'],
+            price = each['shop_item1_price'],
+            img1_url = each['shop_item1_img1'],
+            img2_url = each['shop_item1_img2'],
+            player_id = Player.query.filter_by(last_name=each['name'].split()[1]).first().id
+        )
+        db.session.add(new_item)
+        db.session.commit()
+
 
 class Player(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -59,7 +79,7 @@ class Player(db.Model):
 class ShopItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140))
-    price = db.Column(db.Numeric(precision=6, scale=2))
+    price = db.Column(db.Integer)
     img1_url = db.Column(db.String(1000))
     img2_url = db.Column(db.String(1000))
     player_id = db.Column(db.Integer, db.ForeignKey('player.id'), nullable=True)
@@ -67,24 +87,8 @@ class ShopItem(db.Model):
     def __repr__(self):
         return f"Shop item {self.name}, player_id={self.player_id}"
     
-
     
-    
-sean = Player(first_name='Sean',
-              last_name='Fagan',
-              school='BYU',
-              sport='Baseball',
-              position='Catcher',
-              img1_url='#',
-              img2_url='#'
-              )
-helmet = ShopItem(name='Seans Helmet',
-               price="29.00",
-               img1_url='#',
-               img2_url='#',
-               player_id=(Player.query.filter_by(first_name="Sean").first()).id
-               )
 
-if __name__ == "__main__":
-    app.jinja_env.auto_reload = app.debug
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.jinja_env.auto_reload = app.debug
+#     app.run(debug=True)
