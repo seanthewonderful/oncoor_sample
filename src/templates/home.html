@@ -178,8 +178,8 @@
                                     <img src="{{ item['img1_url'] }}" class="shop-img">
                                 </div>
                                 <div class="card-text d-flex row align-self-center align-items-center">
-                                    <h4>{{ item[0] }}</h4>
-                                    <a class="btn btn-secondary btn-sm" href="{{ url_for('shop') }}">${{ item[1] }}0</a>
+                                    <h4>{{ item['name'] }}</h4>
+                                    <a class="btn btn-secondary btn-sm" href="{{ url_for('shop') }}">${{ item['price'] }}00</a>
                                 </div>
                             </div>
                         </div>
