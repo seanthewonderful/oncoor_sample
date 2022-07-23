@@ -21,7 +21,7 @@
 </style>
 {% endblock %}
 
-{% block title %}{{ player['name'] }}{% endblock %}
+{% block title %}{{ player['first_name'] }} {{ player['last_name'] }}{% endblock %}
 
 <body data-spy="scroll" data-target="navbar">
 
@@ -47,7 +47,7 @@
 
     <div class="container px-0" style="max-width:100vw;">
         <div class="player-banner" style="max-width:100vw">
-            <img class="img-fluid" src="{{ player['img2'] }}">
+            <img class="img-fluid" src="{{ player['img2_url'] }}">
         </div>
         <!-- <h1 style="font-size:5em;">{{ player['name'] }}</h1> -->
         <h4 class="display-5 pt-3">Player Description Here</h4>
@@ -58,7 +58,8 @@
     </div>
     <div class="player-shop container" id="player-shop">
         <div class="players">
-            <h3>{{ player['name'] }}'s Shop</h3>
+            <h3>{{ player['first_name'] }}'s Shop</h3>
+            
             <div class="row justify-content-center pt-3">
                 <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
                     <a class="shop-img-container" href="{{ url_for('player', name=player['name']) }}">
