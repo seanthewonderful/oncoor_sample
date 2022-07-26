@@ -3,13 +3,14 @@ from jinja2 import StrictUndefined
 from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
 import csv
+from os import environ
 
 
 app = Flask(__name__)
 app.jinja_env.undefined = StrictUndefined
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"]=False
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///oncoorDB.db'
-# app.config["SQLALCHEMY_DATABASE_URI"] = ''
+# app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///oncoorDB.db'
+app.config["SQLALCHEMY_DATABASE_URI"] = environ["POSTGRES_URI"]
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = "secretsecrets"
 db = SQLAlchemy(app)
@@ -75,3 +76,16 @@ def seed_shop():
             )
             db.session.add(new_item)
             db.session.commit()
+            
+      
+def connect_to_db(app):
+    app.config['SQLALCHEMY_DATABASE_URI'] = environ["POSTGRES_URI"]
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    db.app = app
+    db.init_app(app)
+      
+if __name__ == "__main__":
+    # As a convenience, if we run this module interactively, it will leave
+    # you in a state of being able to work with the database directly.
+    connect_to_db(app)
+    print("Connected to DB.")

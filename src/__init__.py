@@ -3,15 +3,17 @@ from flask import Flask, render_template, redirect, url_for, request, flash
 from jinja2 import StrictUndefined
 from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
+from os import environ
 
 
 app = Flask(__name__)
 app.jinja_env.undefined = StrictUndefined
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"]=False
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///oncoorDB.db'
-# app.config["SQLALCHEMY_DATABASE_URI"] = ''
+# app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///oncoorDB.db'
+app.config["SQLALCHEMY_DATABASE_URI"] = environ["POSTGRES_URI"]
+app.secret_key = environ["SECRET_KEY"]
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SECRET_KEY"] = "secretsecrets"
+# app.config["SECRET_KEY"] = "secretsecrets"
 db = SQLAlchemy(app)
 csrf = CSRFProtect(app)
 
@@ -46,7 +48,7 @@ shop_items = ShopItem.query.all()
 
 sender_email = "bigbirthdaybuddyboy@gmail.com"
 receiver_email = "seanthewonderful@gmail.com"
-gmail_app_pw = ""
+gmail_app_pw = environ["GMAIL_PW"]
 
 @app.route("/")
 def home():
