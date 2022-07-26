@@ -2,7 +2,6 @@ from flask import Flask, render_template, redirect, url_for, request, flash
 from jinja2 import StrictUndefined
 from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
-import smtplib
 import csv
 
 
@@ -16,9 +15,7 @@ app.config["SECRET_KEY"] = "secretsecrets"
 db = SQLAlchemy(app)
 csrf = CSRFProtect(app)
 
-sender_email = "bigbirthdaybuddyboy@gmail.com"
-receiver_email = "seanthewonderful@gmail.com"
-gmail_app_pw = ""
+
 
 
 class Player(db.Model):
@@ -49,8 +46,6 @@ class ShopItem(db.Model):
 
 player_data = Player.query.all()
 shop_items = ShopItem.query.all()
-
-# file = 'src/players.csv'
 
 def seed_players():
     with open('src/players.csv', 'r') as d:
