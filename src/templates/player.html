@@ -49,7 +49,7 @@
         <div class="player-banner" style="max-width:100vw">
             <img class="img-fluid" src="{{ player['img2_url'] }}">
         </div>
-        <!-- <h1 style="font-size:5em;">{{ player['name'] }}</h1> -->
+        <h1 style="font-size:5em;">{{ player['first_name'] }} {{ player['last_name'] }}</h1>
         <h4 class="display-5 pt-3">Player Description Here</h4>
         <div class="lead" ><p>{{ player['school'] }}</p><p>Player stat</p><p>Player stat</p></div>
         <!-- <div class="d-flex">
@@ -59,19 +59,21 @@
     <div class="player-shop container" id="player-shop">
         <div class="players">
             <h3>{{ player['first_name'] }}'s Shop</h3>
-            {% for item in player['shop_items'] %}
+            {% if player['shop_items'] %}
             <div class="row justify-content-center pt-3">
-                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
-                    <a class="shop-img-container" href="{{ url_for('player', name=player['name']) }}">
-                        <img class="img-fluid shop-img" id="shop-img" src="{{ player['shop_item1_img1'] }}">
-                    </a>
-                    <div class="pt-4">
-                        <h4 class="shop-item">{{ player['shop_item1'] }}</h4>
-                        <h5 class="price">${{ player['shop_item1_price'] }}</h5>
+                {% for item in player['shop_items'] %}
+                    <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                        <a class="shop-img-container" href="{{ url_for('shop') }}">
+                            <img class="img-fluid shop-img" id="shop-img" src="{{ item.img1_url }}">
+                        </a>
+                        <div class="pt-4">
+                            <h4 class="shop-item">{{ item.name }}</h4>
+                            <h5 class="price">${{ item.price }}</h5>
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
-            </div>
-            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>

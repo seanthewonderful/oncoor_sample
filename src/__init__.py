@@ -76,7 +76,7 @@ def contact_us():
 @app.endpoint("player")
 @app.route("/player/<first_name>/<last_name>")
 def player(first_name, last_name):
-    player = Player.query.filter(Player.first_name.like(first_name), Player.last_name.like(last_name))
+    player = Player.query.filter(Player.first_name.like(first_name), Player.last_name.like(last_name)).first()
     return render_template('player.html', player=player)
 
 @app.endpoint("shop")

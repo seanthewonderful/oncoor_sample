@@ -24,7 +24,7 @@ div {
     margin-bottom: 0px;
     padding: 0px;
     font-family: 'Baloo Paaji 2', cursive;
-    color:white;
+    color:rgb(205, 205, 205);
     overflow:unset;
 }
 .jumbotron .container {
@@ -32,6 +32,7 @@ div {
     top: 28%;
     z-index: 4;
     text-align: center;
+    text-shadow: 0 2px 5px black;
 }
 .jumbotron .container h1 {
     padding-bottom: 20px;
