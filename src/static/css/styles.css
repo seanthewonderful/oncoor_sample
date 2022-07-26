@@ -32,13 +32,19 @@ div {
     top: 28%;
     z-index: 4;
     text-align: center;
-    text-shadow: 0 2px 5px black;
+    text-shadow: 0 4px 7px rgb(70, 70, 70);
 }
 .jumbotron .container h1 {
     padding-bottom: 20px;
     border-bottom: 1px solid #FFFFFF;
     border-bottom-color: rgba(255,255,255,0.35);
     display: inline-block;
+	background-image: linear-gradient(rgb(237, 237, 237) 28%, 
+                                    rgb(24, 24, 24) 40%,
+                                    rgb(231, 231, 231) 54%);
+	text-align: center;
+	-webkit-background-clip:text;
+	-webkit-text-fill-color: transparent;
 }
 .jumbotron .overlay {
     background-color: rgb(86, 86, 86);
