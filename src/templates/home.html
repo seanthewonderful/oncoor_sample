@@ -138,7 +138,7 @@
             <div class="row justify-content-around">
                 {% for player in players %}
                 <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
-                    <a class="player-img-a" href="{{ url_for('player', first_name=player['first_name']. last_name=player['last_name']) }}">
+                    <a class="player-img-a" href="{{ url_for('player', first_name=player['first_name'], last_name=player['last_name']) }}">
                         <img class="img-fluid player-img" src="{{ player['img1_url'] }}" alt="Responsive image">
                     </a>
                 </div>
