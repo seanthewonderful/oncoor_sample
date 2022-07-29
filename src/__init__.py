@@ -46,7 +46,11 @@ def player(first_name, last_name):
 @app.endpoint("shop")
 @app.route("/shop")
 def shop():
-    return render_template('shop.html', items=ShopItem.query.all())
+    def get_player(id):
+        return Player.query.get(id)
+    return render_template('shop.html', 
+                           items=ShopItem.query.all(),
+                           get_player=get_player)
         
 @app.endpoint("admin")
 @app.route("/admin", methods=["GET", "POST"])

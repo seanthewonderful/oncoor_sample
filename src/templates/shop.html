@@ -43,9 +43,12 @@
                             </button>
                             </div>
 
-                        <div class="pt-4">
+                        <div class="pt-4 text-center">
                             <h4 class="shop-item">{{ item['name'] }}</h4>
                             <h5 class="price">${{ item['price'] }}</h5>
+                            {% if item['player_id'] %}
+                            <h6 class="player_connection">{{ get_player(item['player_id']).first_name }} {{ get_player(item['player_id']).last_name }}'s merch</h6>
+                            {% endif %}
                         </div>
                     </div>
                     {% endfor %}
