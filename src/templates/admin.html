@@ -4,6 +4,18 @@
 
 {% block content %}
 
+<div class="container-fluid">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert" id="flashMessage">
+                    <p class="text-center">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
 <div class="container my-5 text-white">
     <div class="row py-4 justify-content-center">
         <form class="col-lg-4 add_player_form" method="post" action="{{ url_for('add_player') }}">
@@ -99,17 +111,4 @@
     </div>
 </div>
 
-{% endblock %}
-
-{% block scripts %} 
-<script>
-    function myFunction() {
-        let box_value = document.getElementById("player-tie").value;
-        if (box_value === True) {
-            document.getElementById("player-select").style.display = "initial"
-        } else {
-            document.getElementById("player-select").style.display = "none"
-        }
-    };
-</script>
 {% endblock %}

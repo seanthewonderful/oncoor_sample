@@ -1,12 +1,11 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, EmailField, IntegerField, SelectField, BooleanField
 from wtforms.validators import DataRequired, Email, Optional
-from src.models import ShopItem, player_data, shop_items, Player
+from src.models import ShopItem, Player
 
 class ContactUs(FlaskForm):
     email = EmailField('Email', render_kw={'placeholder':'Email Address'}, validators=[Email()])
     name = StringField('Your Name')
-    
     
 class AddPlayer(FlaskForm):
     first_name = StringField("First Name", validators=[DataRequired()])
@@ -21,7 +20,11 @@ class AddPlayer(FlaskForm):
 choices = [("", "---")]
 for player in Player.query.all():
     choices.append((player.id, player.first_name +" "+ player.last_name))
-
+        
+item_choices = [("", "---")]
+for item in ShopItem.query.all():
+    item_choices.append((item.id, item.name))
+    
 class AddShopItem(FlaskForm):
     name = StringField("Item Name", validators=[DataRequired()])
     price = IntegerField("Price", validators=[DataRequired()])
@@ -33,14 +36,11 @@ class AddShopItem(FlaskForm):
 
 class DeletePlayer(FlaskForm):
     players = SelectField("Beware: Submitting this form will permanently delete the selected player from the database!",
-                              choices=choices, validators=[DataRequired()])
+                              choices=[], validators=[DataRequired()])
     submit = SubmitField("Delete Player")
 
-item_choices = [("", "---")]
-for item in ShopItem.query.all():
-    choices.append((item.id, item.name))
-
+        
 class DeleteShopItem(FlaskForm):
     items = SelectField("Beware: Submitting this form will permanently delete the selected item from the database!",
-                            choices=item_choices, validators=[DataRequired()])
+                            choices=[], validators=[DataRequired()])
     submit = SubmitField("Delete Item")

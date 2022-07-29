@@ -1,3 +1,4 @@
+from ast import Delete
 from re import L
 import smtplib
 from flask import Flask, render_template, redirect, url_for, request, flash
@@ -6,11 +7,8 @@ from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
 from src.forms import AddPlayer, AddShopItem, DeletePlayer, DeleteShopItem
-from src.models import connect_to_db, app, Player, ShopItem
+from src.models import connect_to_db, app, Player, ShopItem, db
 
-
-player_data = Player.query.all()
-shop_items = ShopItem.query.all()
 
 sender_email = "bigbirthdaybuddyboy@gmail.com"
 receiver_email = "seanthewonderful@gmail.com"
@@ -18,8 +16,8 @@ gmail_app_pw = environ["GMAIL_PW"]
 
 @app.route("/")
 def home():
-    return render_template('home.html', players=player_data,
-                                        items=shop_items)
+    return render_template('home.html', players=Player.query.all(),
+                                        items=ShopItem.query.all())
 
 @app.route("/contact_us", methods=["GET", "POST"])
 def contact_us():
@@ -48,73 +46,120 @@ def player(first_name, last_name):
 @app.endpoint("shop")
 @app.route("/shop")
 def shop():
-    return render_template('shop.html', items=shop_items)
-
+    return render_template('shop.html', items=ShopItem.query.all())
+        
 @app.endpoint("admin")
-@app.route("/admin")
+@app.route("/admin", methods=["GET", "POST"])
 def admin():
-    # if current_user.is_authenticated():
+    choices = [("", "---")]
+    for player in Player.query.all():
+        choices.append((player.id, player.first_name +" "+ player.last_name))
+    item_choices = [("", "---")]
+    for item in ShopItem.query.all():
+        item_choices.append((item.id, item.name))
     add_player_form = AddPlayer()
     add_shop_form = AddShopItem()
+    add_shop_form.player_lastname.choices = choices
     delete_player_form = DeletePlayer()
+    delete_player_form.players.choices = choices
     delete_shop_item_form = DeleteShopItem()
+    delete_shop_item_form.items.choices = item_choices
     return render_template('admin.html', 
                            add_player_form=add_player_form,
                            add_shop_form=add_shop_form,
                            delete_player_form=delete_player_form,
-                           delete_shop_item_form=delete_shop_item_form)
+                           delete_shop_item_form=delete_shop_item_form,
+                           players=Player.query.all(),
+                           shop_items=ShopItem.query.all())
 
 
 @app.route("/add_player", methods=["GET", "POST"])
 def add_player():
-    if request.method == "POST":
-        pass
+    add_player_form = AddPlayer()
+    if add_player_form.validate_on_submit():
+        new_player = Player(
+            first_name = add_player_form.first_name.data,
+            last_name = add_player_form.last_name.data,
+            school = add_player_form.school.data,
+            sport = add_player_form.sport.data,
+            position = add_player_form.position.data,
+            img1_url = add_player_form.img1_url.data,
+            img2_url = add_player_form.img2_url.data            
+        )
+        db.session.add(new_player)
+        db.session.commit()
+        flash(f"Player {new_player.first_name} {new_player.last_name} added", category="success")
+        db.session.close()
+        return redirect(url_for('admin'))
+    return redirect(url_for('admin'))
+
     
 @app.route("/add_shop_item", methods=["GET", "POST"])
 def add_shop_item():
-    if request.method == "POST":
-        pass
+    add_shop_item_form = AddShopItem()
+    if add_shop_item_form.validate_on_submit():
+        new_item = ShopItem(
+            name = add_shop_item_form.name.data,
+            price = add_shop_item_form.price.data,
+            img1_url = add_shop_item_form.img1_url.data,
+            img2_url = add_shop_item_form.img2_url.data,
+            player_id = (Player.query.filter_by(last_name=add_shop_item_form.player_lastname.data).first()).id
+        )
+        db.session.add(new_item)
+        db.session.commit()
+        flash(f"Item added: {new_item.name}", category="success")
+        db.session.close()
+        return redirect(url_for('admin'))
+    return redirect(url_for('admin'))
 
 @app.route("/delete_player", methods=["GET", "POST"])
 def delete_player():
-    if request.method == "POST":
-        pass
+    choices = [("", "---")]
+    for player in Player.query.all():
+        choices.append((player.id, player.first_name +" "+ player.last_name))
+    delete_player_form = DeletePlayer()
+    delete_player_form.players.choices = choices
+    if delete_player_form.validate_on_submit():
+        player = Player.query.get(delete_player_form.players.data)
+        db.session.delete(player)
+        db.session.commit()
+        flash(f"Player {player.first_name} {player.last_name} deleted", category="danger")
+        db.session.close()
+        return redirect(url_for('admin'))
+    return redirect(url_for('admin'))
+        
+        
 
 @app.route("/delete_shop_item", methods=["GET", "POST"])
 def delete_shop_item():
-    if request.method == "POST":
-        pass
+    item_choices = [("", "---")]
+    for item in ShopItem.query.all():
+        item_choices.append((item.id, item.name))
+    delete_shop_item_form = DeleteShopItem()
+    delete_shop_item_form.items.choices = item_choices
+    if delete_shop_item_form.validate_on_submit():
+        item = ShopItem.query.get(delete_shop_item_form.items.data)
+        db.session.delete(item)
+        db.session.commit()
+        flash(f"Item deleted from shop: {item.name}", category="danger")
+        db.session.close()
+        return redirect(url_for('admin'))
+    return redirect(url_for('admin'))
     
 if __name__ == "__main__":
     connect_to_db(app)
     app.run()
-
-# def add_player():
-#     form = AddPlayer()
-#     if form.validate_on_submit():
-#         new_player = Player(
-#             first_name = form.first_name.data,
-#             last_name = form.last_name.data,
-#             school = form.schoo.data,
-#             sport = form.sport.data,
-#             position = form.position.data,
-#             img1_url = form.img1_url.data,
-#             img2_url = form.img2_url.data            
-#         )
-#         db.session.add(new_player)
-#         db.session.commit()
-#         flash("Player added", category="success")
     
-# def add_shop_item():
-#     form = AddShopItem()
-#     if form.validate_on_submit():
-#         new_item = ShopItem(
-#             name = form.name.data,
-#             price = form.price.data,
-#             img1_url = form.img1_url.data,
-#             img2_url = form.img2_url.data,
-#             player_id = (Player.query.filter_by(last_name=form.player_lastname.data).first()).id
-#         )
-#         db.session.add(new_item)
-#         db.session.commit()
-#         flash("Item added", category="success")
+def add_shop_item():
+    form = AddShopItem()
+    if form.validate_on_submit():
+        new_item = ShopItem(
+            name = form.name.data,
+            price = form.price.data,
+            img1_url = form.img1_url.data,
+            img2_url = form.img2_url.data,
+            player_id = (Player.query.filter_by(last_name=form.player_lastname.data).first()).id
+        )
+        db.session.add(new_item)
+        db.session.commit()
+        flash("Item added", category="success")
