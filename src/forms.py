@@ -30,8 +30,7 @@ class AddShopItem(FlaskForm):
     price = IntegerField("Price", validators=[DataRequired()])
     img1_url = StringField("Image URL", validators=[DataRequired()])
     img2_url = StringField("Image URL")
-    player_connect = BooleanField("Is this item connected to an Oncoor Player?")
-    player_lastname = SelectField("Player, if connected to item", choices=choices, validators=[Optional()])
+    player_connection = SelectField("Player, if connected to item", choices=choices, validators=[Optional()])
     submit = SubmitField("Add Item")
 
 class DeletePlayer(FlaskForm):

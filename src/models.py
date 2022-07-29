@@ -37,8 +37,8 @@ class ShopItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140))
     price = db.Column(db.Integer)
-    img1_url = db.Column(db.String(1000))
-    img2_url = db.Column(db.String(1000))
+    img1_url = db.Column(db.String(1000), nullable=True)
+    img2_url = db.Column(db.String(1000), nullable=True)
     player_id = db.Column(db.Integer, db.ForeignKey('player.id'), nullable=True)
     
     def __repr__(self):
