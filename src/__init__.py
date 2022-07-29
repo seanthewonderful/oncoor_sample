@@ -1,48 +1,14 @@
+from re import L
 import smtplib
 from flask import Flask, render_template, redirect, url_for, request, flash
 from jinja2 import StrictUndefined
 from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
+from src.forms import AddPlayer, AddShopItem, DeletePlayer, DeleteShopItem
+from src.models import connect_to_db, app, Player, ShopItem
 
 
-app = Flask(__name__)
-app.jinja_env.undefined = StrictUndefined
-app.config["DEBUG_TB_INTERCEPT_REDIRECTS"]=False
-# app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///oncoorDB.db'
-app.config["SQLALCHEMY_DATABASE_URI"] = environ["POSTGRES_URI"]
-app.secret_key = environ["SECRET_KEY"]
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-# app.config["SECRET_KEY"] = "secretsecrets"
-db = SQLAlchemy(app)
-csrf = CSRFProtect(app)
-
-
-class Player(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(40))
-    last_name = db.Column(db.String(40))
-    school = db.Column(db.String(80))
-    sport = db.Column(db.String(40))
-    position = db.Column(db.String(50), nullable=True)
-    img1_url = db.Column(db.String(500))
-    img2_url = db.Column(db.String(500))
-    shop_items = db.relationship('ShopItem', backref='player')
-    
-    def __repr__(self):
-        return f"{self.first_name} {self.last_name}, {self.position} at {self.school}"
-    
-class ShopItem(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(140))
-    price = db.Column(db.Integer)
-    img1_url = db.Column(db.String(1000))
-    img2_url = db.Column(db.String(1000))
-    player_id = db.Column(db.Integer, db.ForeignKey('player.id'), nullable=True)
-    
-    def __repr__(self):
-        return f"Shop item {self.name}, player_id={self.player_id}"
-    
 player_data = Player.query.all()
 shop_items = ShopItem.query.all()
 
@@ -84,8 +50,43 @@ def player(first_name, last_name):
 def shop():
     return render_template('shop.html', items=shop_items)
 
+@app.endpoint("admin")
+@app.route("/admin")
+def admin():
+    # if current_user.is_authenticated():
+    add_player_form = AddPlayer()
+    add_shop_form = AddShopItem()
+    delete_player_form = DeletePlayer()
+    delete_shop_item_form = DeleteShopItem()
+    return render_template('admin.html', 
+                           add_player_form=add_player_form,
+                           add_shop_form=add_shop_form,
+                           delete_player_form=delete_player_form,
+                           delete_shop_item_form=delete_shop_item_form)
 
+
+@app.route("/add_player", methods=["GET", "POST"])
+def add_player():
+    if request.method == "POST":
+        pass
+    
+@app.route("/add_shop_item", methods=["GET", "POST"])
+def add_shop_item():
+    if request.method == "POST":
+        pass
+
+@app.route("/delete_player", methods=["GET", "POST"])
+def delete_player():
+    if request.method == "POST":
+        pass
+
+@app.route("/delete_shop_item", methods=["GET", "POST"])
+def delete_shop_item():
+    if request.method == "POST":
+        pass
+    
 if __name__ == "__main__":
+    connect_to_db(app)
     app.run()
 
 # def add_player():
