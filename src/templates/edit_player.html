@@ -4,22 +4,22 @@
 
 {% block content %}
 
-<div class="container-fluid">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }}" role="alert" id="flashMessage">
-                    <p class="text-center">{{ message }}</p>
-                </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-</div>
 
-<div class="d-flex row">
-    <div style="margin: 2% 0; text-align: center;">
-        <h2>Greetings!</h2>
-        <h5>Edit Player Info</h5>
+<div class="d-flex row mt-5">
+    <div class="container bg-secondary bg-gradient" style="margin: 2% 0; text-align: center;">
+        <h2>Edit Player Info</h2>
+    </div>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert" id="flashMessage">
+                        <p class="text-center">{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
     </div>
 
     <div class="container row m-4">
@@ -42,35 +42,35 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="" method="post" action="#">
+                        <form class="" method="post" action="{{ url_for('edit_player') }}">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="rest_id" value="{{ player.id }}">
+                            <input type="hidden" name="player_id" value="{{ player.id }}">
                             <div class="form-floating py-1">
-                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="First Name" value="{{ player.first_name }}">
+                                <input type="text" class="form-control" id="floatingInputValue" name="first_name" value="{{ player.first_name }}">
                                 <label for="floatingInputValue">First Name</label>
                             </div>
                             <div class="form-floating py-1">
-                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="Last Name" value="{{ player.last_name }}">
+                                <input type="text" class="form-control" id="floatingInputValue" name="last_name" value="{{ player.last_name }}">
                                 <label for="floatingInputValue">Last Name</label>
                             </div>
                             <div class="form-floating py-1">
-                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="Last Name" value="{{ player.school }}">
+                                <input type="text" class="form-control" id="floatingInputValue" name="school" value="{{ player.school }}">
                                 <label for="floatingInputValue">School</label>
                             </div>
                             <div class="form-floating py-1">
-                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="Last Name" value="{{ player.sport }}">
+                                <input type="text" class="form-control" id="floatingInputValue" name="sport" value="{{ player.sport }}">
                                 <label for="floatingInputValue">Sport</label>
                             </div>
                             <div class="form-floating py-1">
-                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="Last Name" value="{{ player.position }}">
+                                <input type="text" class="form-control" id="floatingInputValue" name="position" value="{{ player.position }}">
                                 <label for="floatingInputValue">Position</label>
                             </div>
                             <div class="form-floating py-1">
-                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="Last Name" value="{{ player.img1_url }}">
+                                <input type="text" class="form-control" id="floatingInputValue" name="img1_url" value="{{ player.img1_url }}">
                                 <label for="floatingInputValue">Image #1 URL</label>
                             </div>
                             <div class="form-floating py-1">
-                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="Last Name" value="{{ player.img2_url }}">
+                                <input type="text" class="form-control" id="floatingInputValue" name="img2_url" value="{{ player.img2_url }}">
                                 <label for="floatingInputValue">Image #2 URL</label>
                             </div>
 
@@ -95,9 +95,9 @@
                     This player data will be permanently erased.
                 </div>
                 <div class="modal-footer">
-                    <form class="" method="post" action="#">
+                    <form class="" method="post" action="{{ url_for('edit_player') }}">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                    <input type="hidden" name="" value="">
+                    <input type="hidden" name="player_" value="{{ player.id }}">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <input type="submit" name="submit_delete" value="Yes, Delete" class="btn btn-danger"></input>
                     </form>

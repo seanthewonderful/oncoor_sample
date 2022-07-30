@@ -175,6 +175,29 @@ def delete_shop_item():
 @app.endpoint("edit_player")
 @app.route("/edit_player", methods=["GET", "POST"])
 def edit_player():
+    if request.method == "POST":
+        try:
+            print(request.form['player_'])
+        except:
+            player = Player.query.get(request.form['player_id'])
+            player.first_name = request.form['first_name']
+            player.last_name = request.form['last_name']
+            player.school = request.form['school']
+            player.sport = request.form['sport']
+            player.position = request.form['position']
+            player.img1_url = request.form['img1_url']
+            player.img2_url = request.form['img2_url']
+            db.session.commit()
+            db.session.close()
+            flash("Changed made", category="success")
+            return redirect(url_for('edit_player'))
+        else:
+            player = Player.query.get(request.form['player_'])
+            db.session.delete(player)
+            db.session.commit()
+            db.session.close()
+            flash("Player deleted", category="danger")
+            return redirect(url_for('edit_player'))
     return render_template('edit_player.html', players=Player.query.all())
 
 
