@@ -1,4 +1,5 @@
 from ast import Delete
+from nis import cat
 from re import L
 import smtplib
 from flask import Flask, render_template, redirect, url_for, request, flash
@@ -199,6 +200,37 @@ def edit_player():
             flash("Player deleted", category="danger")
             return redirect(url_for('edit_player'))
     return render_template('edit_player.html', players=Player.query.all())
+
+
+@app.endpoint("edit_shop_items")
+@app.route("/edit_shop_items", methods=["GET", "POST"])
+def edit_shop_items():
+    def get_player(id):
+        return Player.query.get(id)
+    if request.method == "POST":
+        try:
+            print(request.form['item_'])
+        except:
+            item = ShopItem.query.get(request.form['item_id'])
+            item.name = request.form['name']
+            item.price = request.form['price']
+            item.img1_url = request.form['img1_url']
+            item.img2_url = request.form['img2_url']
+            item.player_id = request.form['player_connection']
+            db.session.commit()
+            db.session.close()
+            flash("Changes made", category="success")
+            return redirect(url_for('edit_shop_items'))
+        else:
+            item = ShopItem.query.get(request.form['item_id'])
+            db.session.delete(item)
+            db.session.close()
+            flash("Item deleted")
+            return redirect(url_for('edit_shop_items'))
+    return render_template('edit_shop_items.html', 
+                           items=ShopItem.query.all(),
+                           players=Player.query.all(),
+                           get_player=get_player)
 
 
 if __name__ == "__main__":
