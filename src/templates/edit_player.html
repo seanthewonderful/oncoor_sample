@@ -109,6 +109,43 @@
     </div>
 
     {% endfor %}
+    <div class="row py-4 justify-content-center">
+        <form class="col-lg-4 add_player_form" method="post" action="{{ url_for('add_player') }}">
+            <h2>Add new Player</h2> 
+                {{ add_player_form.csrf_token }}
+            <div class="form-group">
+                {{ add_player_form.first_name.label }}
+                {{ add_player_form.first_name(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ add_player_form.last_name.label }}
+                {{ add_player_form.last_name(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ add_player_form.school.label }}
+                {{ add_player_form.school(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ add_player_form.sport.label }}
+                {{ add_player_form.sport(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ add_player_form.position.label }}
+                {{ add_player_form.position(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ add_player_form.img1_url.label }}
+                {{ add_player_form.img1_url(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ add_player_form.img2_url.label }}
+                {{ add_player_form.img2_url(class="form-control") }}
+            </div>
+            <div class="form-group m-3">
+                {{ add_player_form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
 </div>
 
 {% endblock %}

@@ -199,7 +199,9 @@ def edit_player():
             db.session.close()
             flash("Player deleted", category="danger")
             return redirect(url_for('edit_player'))
-    return render_template('edit_player.html', players=Player.query.all())
+    return render_template('edit_player.html', 
+                           players=Player.query.all(),
+                           add_player_form=AddPlayer())
 
 
 @app.endpoint("edit_shop_items")
@@ -230,7 +232,8 @@ def edit_shop_items():
     return render_template('edit_shop_items.html', 
                            items=ShopItem.query.all(),
                            players=Player.query.all(),
-                           get_player=get_player)
+                           get_player=get_player,
+                           add_shop_form=AddShopItem())
 
 
 if __name__ == "__main__":

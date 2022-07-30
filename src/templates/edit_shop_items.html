@@ -114,6 +114,35 @@
     </div>
 
     {% endfor %}
+    <div class="row py-4 justify-content-center">
+        <form class="col-lg-4 add_shop_form" method="post" action="{{ url_for('add_shop_item') }}">
+            <h2>Add new Shop Item</h2> 
+                {{ add_shop_form.csrf_token }}
+            <div class="form-group">
+                {{ add_shop_form.name.label }}
+                {{ add_shop_form.name(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ add_shop_form.price.label }}
+                {{ add_shop_form.price(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ add_shop_form.img1_url.label }}
+                {{ add_shop_form.img1_url(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ add_shop_form.img2_url.label }}
+                {{ add_shop_form.img2_url(class="form-control") }}
+            </div>
+            <div class="form-group" id="player-select">
+                {{ add_shop_form.player_connection.label }}
+                {{ add_shop_form.player_connection(class="form-control") }}
+            </div>
+            <div class="form-group my-3">
+                {{ add_shop_form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
 </div>
 
 {% endblock %}
