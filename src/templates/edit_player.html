@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin - Edit Player{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert" id="flashMessage">
+                    <p class="text-center">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<div class="d-flex row">
+    <div style="margin: 2% 0; text-align: center;">
+        <h2>Greetings!</h2>
+        <h5>Edit Player Info</h5>
+    </div>
+
+    <div class="container row m-4">
+    {% for player in players %}
+    <div class="container col-lg-3 col-md-3 col-sm-4 col-xs-6 m-2 p-3 bg-secondary bg-gradient">
+        <a class="link-dark" href="{{ url_for('player', first_name=player.first_name, last_name=player.last_name) }}" style="text-decoration:none; text-shadow: rgba(0, 0, 0, 0.493) 2px 5px 11px;"> <dl class="row h5" style="font-weight: bold;">{{ player['first_name'] }} {{ player['last_name'] }}</dl></a>
+        <!-- Modal trigger Buttons -->
+        <button type="button" class="btn btn-primary btn-sm shadow" data-bs-toggle="modal" data-bs-target="#modal{{ player.id }}">
+            Edit
+        </button>
+        <button type="button" class="btn btn-outline-danger btn-sm shadow" data-bs-toggle="modal" data-bs-target="#deleteModal{{ player.id }}">
+            Delete
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="modal{{ player.id }}" tabindex="-1" aria-labelledby="modal{{ player.id }}Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal{{ player.id }}Label">Edit info for {{ player.first_name }} {{ player.last_name }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="" method="post" action="#">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="rest_id" value="{{ player.id }}">
+                            <div class="form-floating py-1">
+                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="First Name" value="{{ player.first_name }}">
+                                <label for="floatingInputValue">First Name</label>
+                            </div>
+                            <div class="form-floating py-1">
+                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="Last Name" value="{{ player.last_name }}">
+                                <label for="floatingInputValue">Last Name</label>
+                            </div>
+                            <div class="form-floating py-1">
+                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="Last Name" value="{{ player.school }}">
+                                <label for="floatingInputValue">School</label>
+                            </div>
+                            <div class="form-floating py-1">
+                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="Last Name" value="{{ player.sport }}">
+                                <label for="floatingInputValue">Sport</label>
+                            </div>
+                            <div class="form-floating py-1">
+                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="Last Name" value="{{ player.position }}">
+                                <label for="floatingInputValue">Position</label>
+                            </div>
+                            <div class="form-floating py-1">
+                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="Last Name" value="{{ player.img1_url }}">
+                                <label for="floatingInputValue">Image #1 URL</label>
+                            </div>
+                            <div class="form-floating py-1">
+                                <input type="text" class="form-control shadow-none" id="floatingInputValue" placeholder="Last Name" value="{{ player.img2_url }}">
+                                <label for="floatingInputValue">Image #2 URL</label>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <input type="submit" name="submit" value="Save Changes" class="btn btn-primary"></input>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+        <div class="modal fade" id="deleteModal{{ player.id }}" tabindex="-1" aria-labelledby="deleteModal{{ player.id }}Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModal{{ player.id }}Label">Are you sure you want to delete this player?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="font-style:italic;">
+                    This player data will be permanently erased.
+                </div>
+                <div class="modal-footer">
+                    <form class="" method="post" action="#">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="" value="">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <input type="submit" name="submit_delete" value="Yes, Delete" class="btn btn-danger"></input>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- End 2nd Modal -->
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

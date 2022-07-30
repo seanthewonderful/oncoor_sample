@@ -19,6 +19,7 @@ def home():
     return render_template('home.html', players=Player.query.all(),
                                         items=ShopItem.query.all())
 
+
 @app.route("/contact_us", methods=["GET", "POST"])
 def contact_us():
     if request.method == "POST":
@@ -33,15 +34,16 @@ def contact_us():
                                 to_addrs=receiver_email,
                                 msg=mssg)
         flash("Your message has been sent! We will reach back out to you at the email address you provided.", category='info')
-        # return redirect(url_for('home')+"#staples")
         return redirect(request.referrer)
     return render_template('home.html')
+
 
 @app.endpoint("player")
 @app.route("/player/<first_name>/<last_name>")
 def player(first_name, last_name):
     player = Player.query.filter(Player.first_name.like(first_name), Player.last_name.like(last_name)).first()
     return render_template('player.html', player=player)
+
 
 @app.endpoint("shop")
 @app.route("/shop")
@@ -51,7 +53,8 @@ def shop():
     return render_template('shop.html', 
                            items=ShopItem.query.all(),
                            get_player=get_player)
-        
+
+
 @app.endpoint("admin")
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
@@ -134,6 +137,7 @@ def add_shop_item():
             return redirect(url_for('admin'))
     return redirect(url_for('admin'))
 
+
 @app.route("/delete_player", methods=["GET", "POST"])
 def delete_player():
     choices = [("", "---")]
@@ -166,7 +170,14 @@ def delete_shop_item():
         db.session.close()
         return redirect(url_for('admin'))
     return redirect(url_for('admin'))
-    
+
+
+@app.endpoint("edit_player")
+@app.route("/edit_player", methods=["GET", "POST"])
+def edit_player():
+    return render_template('edit_player.html', players=Player.query.all())
+
+
 if __name__ == "__main__":
     connect_to_db(app)
     app.run()
