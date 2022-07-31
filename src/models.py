@@ -17,7 +17,15 @@ db = SQLAlchemy(app)
 csrf = CSRFProtect(app)
 
 
-
+class Admin(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(60))
+    title = db.Column(db.String(60))
+    clearance = db.Column(db.String(40))
+    password_hash = db.Column(db.String(200))
+    
+    def __repr__(self):
+        return f"Admin: {self.name}, {self.title}\nClearance Lvl: {self.clearance}"
 
 class Player(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -48,36 +56,9 @@ class ShopItem(db.Model):
 player_data = Player.query.all()
 shop_items = ShopItem.query.all()
 
-def seed_players():
-    with open('src/players.csv', 'r') as d:
-        player_data = csv.DictReader(d)
-        for each in player_data:
-            new_player = Player(
-                first_name = each['name'].split()[0],
-                last_name = each['name'].split()[1],
-                school = each['school'],
-                sport = each['sport'],
-                img1_url = each['img1'],
-                img2_url = each['img2']
-            )
-            db.session.add(new_player)
-            db.session.commit()
-        
-def seed_shop():
-    with open('src/players.csv', 'r') as d:
-        player_data = csv.DictReader(d)
-        for each in player_data:
-            new_item = ShopItem(
-                name = each['shop_item1'],
-                price = each['shop_item1_price'],
-                img1_url = each['shop_item1_img1'],
-                img2_url = each['shop_item1_img2'],
-                player_id = Player.query.filter_by(last_name=each['name'].split()[1]).first().id
-            )
-            db.session.add(new_item)
-            db.session.commit()
-            
-      
+def get_admin(admin_id):
+    return Admin.query.get(admin_id)
+
 def connect_to_db(app):
     app.config['SQLALCHEMY_DATABASE_URI'] = environ["POSTGRES_URI"]
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -89,3 +70,36 @@ if __name__ == "__main__":
     # you in a state of being able to work with the database directly.
     connect_to_db(app)
     print("Connected to DB.")
+
+
+
+
+
+# def seed_players():
+#     with open('src/players.csv', 'r') as d:
+#         player_data = csv.DictReader(d)
+#         for each in player_data:
+#             new_player = Player(
+#                 first_name = each['name'].split()[0],
+#                 last_name = each['name'].split()[1],
+#                 school = each['school'],
+#                 sport = each['sport'],
+#                 img1_url = each['img1'],
+#                 img2_url = each['img2']
+#             )
+#             db.session.add(new_player)
+#             db.session.commit()
+        
+# def seed_shop():
+#     with open('src/players.csv', 'r') as d:
+#         player_data = csv.DictReader(d)
+#         for each in player_data:
+#             new_item = ShopItem(
+#                 name = each['shop_item1'],
+#                 price = each['shop_item1_price'],
+#                 img1_url = each['shop_item1_img1'],
+#                 img2_url = each['shop_item1_img2'],
+#                 player_id = Player.query.filter_by(last_name=each['name'].split()[1]).first().id
+#             )
+#             db.session.add(new_item)
+#             db.session.commit()

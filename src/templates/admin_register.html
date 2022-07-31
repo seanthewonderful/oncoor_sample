@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Register Admin{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert" id="flashMessage">
+                    <p class="text-center">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<div class="container my-5 text-white">
+    <div class="container row justify-content-between">
+        <div class="col-lg-6 py-4 justify-content-center">
+            <form class="register_form" method="post" action="{{ url_for('admin_register') }}">
+                <h2>Register new Administrator</h2> 
+                    {{ register_form.csrf_token }}
+                <div class="form-group">
+                    {{ register_form.username.label }}
+                    {{ register_form.username(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ register_form.title.label }}
+                    {{ register_form.title(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ register_form.clearance.label }}
+                    {{ register_form.clearance(class="form-select") }}
+                </div>
+                <div class="form-group">
+                    {{ register_form.password_hash.label }}
+                    {{ register_form.password_hash(class="form-control") }}
+                </div>
+                <div class="form-group my-3">
+                    {{ register_form.submit(class="btn btn-primary shadow") }}
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4 mt-5 pt-5">
+            <h3>Administrator List:</h3>
+            {% for admin in admins %}
+            <div class="container p-2 shadow">
+                <h5><u>{{ admin.username }}</u></h5>
+                <dt>{{ admin.title }}</dt>
+                <li>Clearance Level: <em>{{ admin.clearance.title() }}</em></li>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

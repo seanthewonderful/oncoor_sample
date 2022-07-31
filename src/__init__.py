@@ -1,19 +1,20 @@
-from ast import Delete
-from nis import cat
-from re import L
 import smtplib
 from flask import Flask, render_template, redirect, url_for, request, flash
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from jinja2 import StrictUndefined
 from flask_wtf.csrf import CSRFProtect
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
-from src.forms import AddPlayer, AddShopItem, DeletePlayer, DeleteShopItem
-from src.models import connect_to_db, app, Player, ShopItem, db
+from src.forms import AddPlayer, AddShopItem, DeletePlayer, DeleteShopItem, RegisterForm, LoginForm
+from src.models import db, connect_to_db, app, Player, ShopItem, Admin
 
 
 sender_email = "bigbirthdaybuddyboy@gmail.com"
 receiver_email = "seanthewonderful@gmail.com"
 gmail_app_pw = environ["GMAIL_PW"]
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 @app.route("/")
 def home():
@@ -59,26 +60,32 @@ def shop():
 @app.endpoint("admin")
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
-    choices = [("", "---")]
-    for player in Player.query.all():
-        choices.append((player.id, player.first_name +" "+ player.last_name))
-    item_choices = [("", "---")]
-    for item in ShopItem.query.all():
-        item_choices.append((item.id, item.name))
-    add_player_form = AddPlayer()
-    add_shop_form = AddShopItem()
-    add_shop_form.player_connection.choices = choices
-    delete_player_form = DeletePlayer()
-    delete_player_form.players.choices = choices
-    delete_shop_item_form = DeleteShopItem()
-    delete_shop_item_form.items.choices = item_choices
+    login_form = LoginForm()
+    if current_user.is_authenticated:
+        choices = [("", "---")]
+        for player in Player.query.all():
+            choices.append((player.id, player.first_name +" "+ player.last_name))
+        item_choices = [("", "---")]
+        for item in ShopItem.query.all():
+            item_choices.append((item.id, item.name))
+        add_player_form = AddPlayer()
+        add_shop_form = AddShopItem()
+        add_shop_form.player_connection.choices = choices
+        delete_player_form = DeletePlayer()
+        delete_player_form.players.choices = choices
+        delete_shop_item_form = DeleteShopItem()
+        delete_shop_item_form.items.choices = item_choices
+        return render_template('admin.html', 
+                            login_form=login_form,
+                            add_player_form=add_player_form,
+                            add_shop_form=add_shop_form,
+                            delete_player_form=delete_player_form,
+                            delete_shop_item_form=delete_shop_item_form,
+                            players=Player.query.all(),
+                            shop_items=ShopItem.query.all())
     return render_template('admin.html', 
-                           add_player_form=add_player_form,
-                           add_shop_form=add_shop_form,
-                           delete_player_form=delete_player_form,
-                           delete_shop_item_form=delete_shop_item_form,
-                           players=Player.query.all(),
-                           shop_items=ShopItem.query.all())
+                        login_form=login_form)
+    
 
 
 @app.route("/add_player", methods=["GET", "POST"])
@@ -235,6 +242,61 @@ def edit_shop_items():
                            get_player=get_player,
                            add_shop_form=AddShopItem())
 
+
+@app.endpoint('admin_register')
+@app.route("/admin_register", methods=["GET", "POST"])
+def admin_register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        if Admin.query.filter_by(username=form.username.data).first():
+            flash("Name already in use. Please try Firstname Lastname1", category="warning")
+            return redirect(url_for('admin_register'))
+        else:
+            new_admin = Admin(
+                username = form.username.data,
+                title = form.title.data,
+                clearance = form.clearance.data,
+                password_hash = generate_password_hash((form.password_hash.data), method='pbkdf2:sha256', salt_length=8)
+            )
+            db.session.add(new_admin)
+            db.session.commit()
+            flash("Success", category="success")
+            db.session.close()
+            return redirect(url_for('admin_register'))
+    return render_template('admin_register.html',
+                           register_form=form,
+                           admins = Admin.query.all())
+
+
+@app.route("/login")
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        admin = Admin.query.filter_by(username=(form.username.data)).first()
+        if admin:
+            password = form.password.data
+            if check_password_hash(admin.password, password):
+                login_user(admin)
+                flash(f"Logged in as {admin.username}")
+                return redirect(url_for('admin'))
+            else:
+                flash("Incorrect password", category="danger")
+                return redirect(url_for('admin'))
+        else:
+            flash("Username does not exist", category="danger")
+            return redirect(url_for('admin'))
+    return redirect(url_for('admin'))
+
+
+""" Flask Login Manager """
+
+@login_manager.user_loader
+def load_user(admin_id):
+    return Admin.query.get(int(admin_id))
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return "Sorry, you must be logged in to see this page."
 
 if __name__ == "__main__":
     connect_to_db(app)

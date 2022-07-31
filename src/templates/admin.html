@@ -16,6 +16,8 @@
     {% endwith %}
 </div>
 
+{% if current_user.is_authenticated %}
+
 <div class="container my-5 text-white">
     <div class="row py-4 justify-content-center">
         <form class="col-lg-4 add_player_form" method="post" action="{{ url_for('add_player') }}">
@@ -49,7 +51,7 @@
                 {{ add_player_form.img2_url.label }}
                 {{ add_player_form.img2_url(class="form-control") }}
             </div>
-            <div class="form-group m-3">
+            <div class="form-group my-3">
                 {{ add_player_form.submit(class="btn btn-primary") }}
             </div>
         </form>
@@ -74,7 +76,7 @@
             </div>
             <div class="form-group" id="player-select">
                 {{ add_shop_form.player_connection.label }}
-                {{ add_shop_form.player_connection(class="form-control") }}
+                {{ add_shop_form.player_connection(class="form-select") }}
             </div>
             <div class="form-group my-3">
                 {{ add_shop_form.submit(class="btn btn-primary") }}
@@ -87,7 +89,7 @@
                 {{ delete_player_form.csrf_token }}
             <div class="form-group">
                 {{ delete_player_form.players.label }}
-                {{ delete_player_form.players(class="form-control") }}
+                {{ delete_player_form.players(class="form-select") }}
             </div>
             <div class="form-group my-3">
                 {{ delete_player_form.submit(class="btn btn-danger") }}
@@ -98,7 +100,7 @@
                 {{ delete_shop_item_form.csrf_token }}
             <div class="form-group">
                 {{ delete_shop_item_form.items.label }}
-                {{ delete_shop_item_form.items(class="form-control") }}
+                {{ delete_shop_item_form.items(class="form-select") }}
             </div>
             <div class="form-group my-3">
                 {{ delete_shop_item_form.submit(class="btn btn-danger") }}
@@ -106,5 +108,29 @@
         </form>
     </div>
 </div>
+
+{% else %} 
+
+<div class="container my-5 text-white">
+    <div class="row py-4 justify-content-center">
+        <form class="col-6 login_form" method="post" action="#">
+            <h2>Login</h2>
+            {{ login_form.csrf_token }}
+            <div class="form-group">
+                {{ login_form.username.label }}
+                {{ login_form.username(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ login_form.password.label }}
+                {{ login_form.password(class="form-control") }}
+            </div>
+            <div class="form-group my-3">
+                {{ login_form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endif %}
 
 {% endblock %}

@@ -1,5 +1,6 @@
+from ast import Pass
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, EmailField, IntegerField, SelectField, BooleanField
+from wtforms import StringField, SubmitField, EmailField, IntegerField, SelectField, PasswordField
 from wtforms.validators import DataRequired, Email, Optional
 from src.models import ShopItem, Player
 
@@ -43,3 +44,20 @@ class DeleteShopItem(FlaskForm):
     items = SelectField("Beware: Submitting this form will permanently delete the selected item from the database!",
                             choices=[], validators=[DataRequired()])
     submit = SubmitField("Delete Item")
+    
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Login')
+
+class RegisterForm(FlaskForm):
+    username = StringField('Firstname Lastname', render_kw={'placeholder':'Use format: Firstname Lastname'}, validators=[DataRequired()])
+    password_hash = PasswordField('Password', render_kw={'placeholder':'No rules for password'}, validators=[DataRequired()])
+    title = StringField('Title', render_kw={'placeholder':'Your job title'}, validators=[DataRequired()])
+    clearance = SelectField('Clearance Level', choices=[('top_secret', 'Top Secret'), ('blue', 'Blue'), ('yellow', 'Yellow'), ('medium_secret', 'Medium Secret'), ('red', 'Red'), ('gold', 'Gold'), ('midnight', 'Midnight')])
+    submit = SubmitField('Create Administrator')
+    
+class LoginForm(FlaskForm):
+    username = StringField('Username (Firstname Lastname)', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Login')
