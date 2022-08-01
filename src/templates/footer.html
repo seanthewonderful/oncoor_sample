@@ -1,3 +1,5 @@
+{% if request.url_rule.endpoint != 'shop_item' %} 
+
 <footer class="navbar navbar-expand-lg bg-dark">
     <div class="container-fluid justify-content-space-between">
         <a class="navbar-brand" href="#">
@@ -10,3 +12,5 @@
         {% endif %}
     </div>
 </footer>
+
+{% endif %}

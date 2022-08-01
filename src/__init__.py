@@ -8,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from os import environ
 from src.forms import AddPlayer, AddShopItem, DeletePlayer, DeleteShopItem, RegisterForm, LoginForm
 from src.models import db, connect_to_db, app, Player, ShopItem, Admin
+import random
 
 
 sender_email = "bigbirthdaybuddyboy@gmail.com"
@@ -19,7 +20,7 @@ login_manager.init_app(app)
 @app.route("/")
 def home():
     return render_template('home.html', players=Player.query.all(),
-                                        items=ShopItem.query.all())
+                                        items=random.sample(ShopItem.query.all(), k=4))
 
 
 @app.route("/contact_us", methods=["GET", "POST"])
@@ -56,6 +57,19 @@ def shop():
                            items=ShopItem.query.all(),
                            get_player=get_player)
 
+
+@app.endpoint("shop_item")
+@app.route("/shop_item/<name>", methods=["GET", "POST"])
+def shop_item(name):
+    item = ShopItem.query.filter_by(name=name).first()
+    def get_player(id):
+        return Player.query.get(id)
+    return render_template('shop_item.html', 
+                           item=item,
+                           get_player=get_player)
+
+
+""" Administrator Routes """
 
 @app.endpoint("admin")
 @app.route("/admin", methods=["GET", "POST"])

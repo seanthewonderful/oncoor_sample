@@ -139,7 +139,7 @@
                 {% for player in players %}
                 <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
                     <a class="player-img-a" href="{{ url_for('player', first_name=player['first_name'], last_name=player['last_name']) }}">
-                        <img class="img-fluid player-img" src="{{ player['img1_url'] }}" alt="Responsive image">
+                        <img class="img-fluid player-img" src="{{ player['img1_url'] }}" style="height: 30vh;" alt="Responsive image">
                     </a>
                 </div>
                 {% endfor %}
@@ -151,49 +151,26 @@
 <div class="shop" id="shop" data-bs-spy="scroll" data-bs-target="#navbar">
     <div class="overlay"></div>
     <div class="shop-container">
-        <div class="shop-title" style="font-size: 5vw; font-family: 'Baloo Paaji 2', cursive;">
-            <h1 class="text-center">merch</h1>
+        <div class="container align-items-center shop-title" style="font-size: 5vw; font-family: 'Baloo Paaji 2', cursive;">
+            <h1 class="text-center">Merch</h1>
+            <h6 class="text-center"><a class="btn btn-sm btn-outline-light" href="{{ url_for('shop') }}">Visit Shop</a></h6>
         </div>
-        <div class="row mx-auto my-auto justify-content-center" style="font-family: 'Baloo Paaji 2', cursive;">
-            <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner" role="listbox">
-                    <div class="carousel-item active" height="30vh">
-                        <div class="col-md-3" height="30vh">
-                            <div class="card" height="30vh">
-                                <div class="card-img">
-                                    <img src="https://www.kron4.com/wp-content/uploads/sites/11/2022/02/FootballGettyImages-78457130.jpg" class="shop-img">
-                                </div>
-                                <div class="card-text d-flex row align-self-center align-items-center">
-                                    <h4>Visit the full shop</h4>
-                                    <a class="btn btn-secondary btn-sm" href="{{ url_for('shop') }}">Click</a>
-                                </div>
-                            </div>
-                        </div>
+
+        <div class="container-fluid row justify-content-around">
+
+                {% for item in items %} 
+
+                <div class="card text-center shadow col">
+                    <img src="{{ item.img1_url }}" class="card-img-top pt-2" style="height: 15vw;" alt="image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text fst-italic">${{ item.price }}</p>
                     </div>
-                    {% for item in items %}
-                    <div class="carousel-item">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-img">
-                                    <img src="{{ item['img1_url'] }}" class="shop-img">
-                                </div>
-                                <div class="card-text d-flex row align-self-center align-items-center">
-                                    <h4>{{ item['name'] }}</h4>
-                                    <a class="btn btn-secondary btn-sm" href="{{ url_for('shop') }}">${{ item['price'] }}00</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    
+                    <a href="{{ url_for('shop_item', name=item.name) }}" class="stretched-link"></a>
                 </div>
-                <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                </a>
-                <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                </a>
-            </div>
+
+                {% endfor %}
+
         </div>
     </div>
 </div>

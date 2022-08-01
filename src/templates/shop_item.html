@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Shop - {{ item.name }}{% endblock %}
+
+<body data-spy="scroll" data-target="navbar">
+
+{% block content %}
+<div class="baseball" id="baseball">
+    <div class="overlay"></div>
+
+    <div class="container-fluid shop-item-container" style="position: absolute; top:15%">
+        <div class="row justify-content-center pt-3">
+                <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
+                    <a class="shop-img-container" href="#">
+                        <img class="img-fluid shop-img" id="shop-img" src="{{ item.img1_url }}">
+                    </a>
+                    <div class="pt-4">
+                        <h4 class="shop-item">{{ item.name }}</h4>
+                        <h5 class="price">${{ item.price }}</h5>
+                        <a class="btn btn-primary" href="#">Add to Cart</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% if item.player_id %}
+<div class="container justify-content-center" style="position:absolute; top:70%; left:10%; z-index:5;">
+    <div class="row">
+        <div class="">
+            <img src="{{ get_player(item.player_id).img1_url }}" alt="player image" style="height:15vh">
+            <p>{{ item.name }} is part of {{ get_player(item.player_id).first_name }} {{ get_player(item.player_id).last_name }}'s shop.</p>
+            <a href="{{ url_for('player', first_name=get_player(item.player_id).first_name, last_name=get_player(item.player_id).last_name) }}" class="stretched-link"></a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
