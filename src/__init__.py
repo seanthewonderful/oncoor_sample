@@ -1,13 +1,8 @@
 import smtplib
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from jinja2 import StrictUndefined
-from flask_wtf.csrf import CSRFProtect
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_sqlalchemy import SQLAlchemy
 from os import environ
-from src.forms import AddPlayer, AddShopItem, DeletePlayer, DeleteShopItem, RegisterForm, LoginForm
-from src.models import db, connect_to_db, app, Player, ShopItem, Admin, get_player
 import random
 
 
@@ -16,6 +11,10 @@ receiver_email = "seanthewonderful@gmail.com"
 gmail_app_pw = environ["GMAIL_PW"]
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+from src.forms import AddPlayer, AddShopItem, DeletePlayer, DeleteShopItem, RegisterForm, LoginForm
+from src.models import db, connect_to_db, app, Player, ShopItem, Admin, get_player
+
 
 @app.route("/")
 def home():
