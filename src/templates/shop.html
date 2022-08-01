@@ -6,7 +6,8 @@
 
 {% block content %}
 
-<div class="shop-bg" id="charcoal1" data-bs-spy="scroll" data-bs-target="#navbar">
+<div class="shop-page pt-5" data-bs-spy="scroll" data-bs-target="#navbar">
+    <div class="overlay"></div>
     <div class="container-fluid row" font-family: 'Baloo Paaji 2', cursive;">
         <div class="staples-container" style="font-family: 'Baloo Paaji 2', cursive;">
             <div class="staples-animate" id="staples">
@@ -22,7 +23,7 @@
                 <div class="row justify-content-center">
                     {% for item in items %} 
 
-                    <div class="card text-center shadow col-2" id="shop-card">
+                    <div class="card text-center shadow col-2" id="shop-card" style="background-image: linear-gradient(rgb(56, 56, 56),rgb(190, 190, 190));">
                         <img src="{{ item.img1_url }}" class="card-img-top pt-2" id="shop-item-img" style="height: 15vw;" alt="image">
                         <div class="card-body">
                             <h5 class="card-title">{{ item.name }}</h5>
@@ -30,41 +31,8 @@
                         </div>
                         <a href="{{ url_for('shop_item', name=item.name) }}" class="stretched-link"></a>
                     </div>
-    
+
                     {% endfor %}
-                    <!-- {% for item in items %}
-                    <div class="col-lg-3 col-md-4 col-sm-6 player-img-div">
-
-                        <div id="p{{ item.id }}" class="carousel carousel-dark slide" data-ride="carousel" data-bs-ride="carousel" data-interval="false">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                <img src="{{ item['img1_url'] }}" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                <img src="{{ item['img2_url'] }}" class="d-block w-100" alt="...">
-                                </div>
-                            </div>
-
-                            <button class="carousel-control-prev" type="button" data-bs-target="#p{{ item.id }}" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#p{{ item.id }}" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-
-                        <div class="pt-4 text-center">
-                            <h4 class="shop-item">{{ item['name'] }}</h4>
-                            <h5 class="price">${{ item['price'] }}</h5>
-                            {% if item['player_id'] %}
-                            <h6 class="player_connection">{{ get_player(item['player_id']).first_name }} {{ get_player(item['player_id']).last_name }}'s merch</h6>
-                            {% endif %}
-                        </div>
-                        
-                    </div>
-                    {% endfor %} -->
                 </div>
         </div>
     </div>

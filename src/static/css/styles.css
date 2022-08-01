@@ -373,6 +373,33 @@ div {
     transform: scale(1.2, 1.2);
     transition: transform 200ms ease;
 }
+.shop-page {
+    background: no-repeat center fixed url(https://cdnb.artstation.com/p/assets/images/images/014/920/273/large/matthew-wolf-duke-university-rnd2-opt-01-2500pix-0003.jpg);
+    background-size: cover;
+    height: fit-content;
+    margin-bottom: 0px;
+    padding: 0px;
+    font-family: 'Baloo Paaji 2', cursive;
+    color:rgb(205, 205, 205);
+    overflow:unset;
+    position:relative;
+}
+.shop-page .container-fluid {
+    position: relative;
+    z-index:5
+}
+.shop-page .overlay {
+    background-color: rgb(86, 86, 86);
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 100%;
+    /* margin-bottom: -2px; */
+    opacity: 0.60;
+    z-index: 2;
+}
 
 .staples-center {
     background: no-repeat center fixed url(https://i.pinimg.com/originals/c4/a2/bc/c4a2bcb08f726e4825e81f47b383e4e1.jpg);
