@@ -49,9 +49,11 @@
             <li class="nav-item p-2">
               <a class="nav-link shadow bg-secondary bg-gradient" href="{{ url_for('edit_shop_items') }}">Edit Shop Items</a>
             </li>
+              {% if current_user.clearance == 'midnight' %}
             <li class="nav-item p-2">
               <a class="nav-link shadow bg-secondary bg-gradient" href="{{ url_for('admin_register') }}">Add New Admin</a>
             </li>
+              {% endif %}
             <li class="nav-item p-2">
               <div class="btn-group">
                 <button type="button" class="btn btn-secondary">Welcome, Administrator {{ current_user.username }}</button>
@@ -91,9 +93,6 @@
             </li>
             <li class="nav-item p-2">
               <a class="nav-link shadow bg-secondary bg-gradient" href="{{ url_for('edit_player') }}">Edit Players</a>
-            </li>
-            <li class="nav-item p-2">
-              <a class="nav-link" href="">Welcome, Administrator {{ current_user.username }}!</a>
             </li>
             <li class="nav-item p-2">
               <div class="btn-group">

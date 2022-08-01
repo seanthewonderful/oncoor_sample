@@ -14,8 +14,8 @@ class AddPlayer(FlaskForm):
     school = StringField("School", validators=[DataRequired()])
     sport = StringField("Sport", validators=[DataRequired()])
     position = StringField("Position", validators=[DataRequired()])
-    img1_url = StringField("Image URL", validators=[DataRequired()])
-    img2_url = StringField("Image URL", validators=[DataRequired()])
+    img1_url = StringField("Image URL - Portrait", validators=[DataRequired()])
+    img2_url = StringField("Image URL - Banner", validators=[DataRequired()])
     submit = SubmitField("Add Player")
     
 choices = [("", "---")]
@@ -38,7 +38,6 @@ class DeletePlayer(FlaskForm):
     players = SelectField("Beware: Submitting this form will permanently delete the selected player from the database!",
                               choices=[], validators=[DataRequired()])
     submit = SubmitField("Delete Player")
-
         
 class DeleteShopItem(FlaskForm):
     items = SelectField("Beware: Submitting this form will permanently delete the selected item from the database!",

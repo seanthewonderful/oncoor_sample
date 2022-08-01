@@ -26,7 +26,7 @@ class Admin(UserMixin, db.Model):
     password_hash = db.Column(db.String(200))
     
     def __repr__(self):
-        return f"Admin: {self.name}, {self.title}\nClearance Lvl: {self.clearance}"
+        return f"Admin: {self.username}, {self.title}\nClearance Lvl: {self.clearance}"
 
 class Player(db.Model):
     id = db.Column(db.Integer, primary_key=True)

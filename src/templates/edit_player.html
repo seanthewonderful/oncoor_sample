@@ -109,7 +109,7 @@
     </div>
 
     {% endfor %}
-    <div class="row py-4 justify-content-center">
+    <div class="row py-4 justify-content-center text-white">
         <form class="col-lg-4 add_player_form" method="post" action="{{ url_for('add_player') }}">
             <h2>Add new Player</h2> 
                 {{ add_player_form.csrf_token }}

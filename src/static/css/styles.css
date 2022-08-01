@@ -32,7 +32,7 @@ div {
     top: 28%;
     z-index: 4;
     text-align: center;
-    text-shadow: 0 2px 5px rgb(63, 63, 63);
+    text-shadow: 0 3px 8px rgb(63, 63, 63);
 }
 .jumbotron .container h1 {
     padding-bottom: 20px;
@@ -368,6 +368,10 @@ div {
     margin: 2%;
     align-items: center;
     overflow: hidden;
+}
+#shop-card:hover > #shop-item-img {
+    transform: scale(1.2, 1.2);
+    transition: transform 200ms ease;
 }
 
 .staples-center {
