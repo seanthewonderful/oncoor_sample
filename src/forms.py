@@ -1,4 +1,3 @@
-from ast import Pass
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, EmailField, IntegerField, SelectField, PasswordField
 from wtforms.validators import DataRequired, Email, Optional
