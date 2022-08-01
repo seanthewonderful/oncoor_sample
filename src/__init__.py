@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
 from src.forms import AddPlayer, AddShopItem, DeletePlayer, DeleteShopItem, RegisterForm, LoginForm
-from src.models import db, connect_to_db, app, Player, ShopItem, Admin
+from src.models import db, connect_to_db, app, Player, ShopItem, Admin, get_player
 import random
 
 
@@ -62,8 +62,6 @@ def shop():
 @app.route("/shop_item/<name>", methods=["GET", "POST"])
 def shop_item(name):
     item = ShopItem.query.filter_by(name=name).first()
-    def get_player(id):
-        return Player.query.get(id)
     return render_template('shop_item.html', 
                            item=item,
                            get_player=get_player)
@@ -95,7 +93,8 @@ def admin():
                             delete_player_form=delete_player_form,
                             delete_shop_item_form=delete_shop_item_form,
                             players=Player.query.all(),
-                            shop_items=ShopItem.query.all())
+                            shop_items=ShopItem.query.all(),
+                            get_player=get_player)
     return redirect(url_for('admin_login'))
     
 
