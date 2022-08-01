@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, flash
 from jinja2 import StrictUndefined
 from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 import csv
 from os import environ
 
@@ -17,7 +18,7 @@ db = SQLAlchemy(app)
 csrf = CSRFProtect(app)
 
 
-class Admin(db.Model):
+class Admin(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(60))
     title = db.Column(db.String(60))

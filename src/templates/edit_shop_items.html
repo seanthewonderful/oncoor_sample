@@ -22,9 +22,9 @@
         {% endwith %}
     </div>
 
-    <div class="container row m-4">
+    <div class="container-fluid row m-4">
     {% for item in items %}
-    <div class="container col-lg-3 col-md-3 col-sm-4 col-xs-6 m-2 p-3 bg-secondary bg-gradient">
+    <div class="container col-lg-2 col-md-3 col-sm-4 col-xs-6 m-2 p-3 bg-secondary bg-gradient">
         <a class="link-dark" href="{{ url_for('shop') }}" style="text-decoration:none; text-shadow: rgba(0, 0, 0, 0.493) 2px 5px 11px;"> 
             <dl class="row h5" style="font-weight: bold;">{{ item.name }}</dl>
         </a>
@@ -136,7 +136,7 @@
             </div>
             <div class="form-group" id="player-select">
                 {{ add_shop_form.player_connection.label }}
-                {{ add_shop_form.player_connection(class="form-control") }}
+                {{ add_shop_form.player_connection(class="form-select") }}
             </div>
             <div class="form-group my-3">
                 {{ add_shop_form.submit(class="btn btn-primary") }}

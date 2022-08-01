@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Register Admin{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert" id="flashMessage">
+                    <p class="text-center">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<div class="container my-5 text-white">
+    <div class="row py-4 justify-content-center">
+        <form class="col-6 login_form" method="post" action="{{ url_for('admin_login') }}">
+            <h2>Login</h2>
+            {{ login_form.csrf_token }}
+            <div class="form-group">
+                {{ login_form.username.label }}
+                {{ login_form.username(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ login_form.password.label }}
+                {{ login_form.password(class="form-control") }}
+            </div>
+            <div class="form-group my-3">
+                {{ login_form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

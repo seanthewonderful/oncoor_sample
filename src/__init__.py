@@ -59,8 +59,8 @@ def shop():
 
 @app.endpoint("admin")
 @app.route("/admin", methods=["GET", "POST"])
+@login_required
 def admin():
-    login_form = LoginForm()
     if current_user.is_authenticated:
         choices = [("", "---")]
         for player in Player.query.all():
@@ -76,19 +76,17 @@ def admin():
         delete_shop_item_form = DeleteShopItem()
         delete_shop_item_form.items.choices = item_choices
         return render_template('admin.html', 
-                            login_form=login_form,
                             add_player_form=add_player_form,
                             add_shop_form=add_shop_form,
                             delete_player_form=delete_player_form,
                             delete_shop_item_form=delete_shop_item_form,
                             players=Player.query.all(),
                             shop_items=ShopItem.query.all())
-    return render_template('admin.html', 
-                        login_form=login_form)
+    return redirect(url_for('admin_login'))
     
 
-
 @app.route("/add_player", methods=["GET", "POST"])
+@login_required
 def add_player():
     add_player_form = AddPlayer()
     if add_player_form.validate_on_submit():
@@ -110,6 +108,7 @@ def add_player():
 
     
 @app.route("/add_shop_item", methods=["GET", "POST"])
+@login_required
 def add_shop_item():
     choices = [("", "---")]
     for player in Player.query.all():
@@ -147,6 +146,7 @@ def add_shop_item():
 
 
 @app.route("/delete_player", methods=["GET", "POST"])
+@login_required
 def delete_player():
     choices = [("", "---")]
     for player in Player.query.all():
@@ -164,6 +164,7 @@ def delete_player():
 
 
 @app.route("/delete_shop_item", methods=["GET", "POST"])
+@login_required
 def delete_shop_item():
     item_choices = [("", "---")]
     for item in ShopItem.query.all():
@@ -182,6 +183,7 @@ def delete_shop_item():
 
 @app.endpoint("edit_player")
 @app.route("/edit_player", methods=["GET", "POST"])
+@login_required
 def edit_player():
     if request.method == "POST":
         try:
@@ -213,6 +215,7 @@ def edit_player():
 
 @app.endpoint("edit_shop_items")
 @app.route("/edit_shop_items", methods=["GET", "POST"])
+@login_required
 def edit_shop_items():
     def get_player(id):
         return Player.query.get(id)
@@ -245,6 +248,7 @@ def edit_shop_items():
 
 @app.endpoint('admin_register')
 @app.route("/admin_register", methods=["GET", "POST"])
+@login_required
 def admin_register():
     form = RegisterForm()
     if form.validate_on_submit():
@@ -268,24 +272,30 @@ def admin_register():
                            admins = Admin.query.all())
 
 
-@app.route("/login")
-def login():
+@app.route("/admin_login", methods=["GET", "POST"])
+def admin_login():
     form = LoginForm()
     if form.validate_on_submit():
         admin = Admin.query.filter_by(username=(form.username.data)).first()
         if admin:
             password = form.password.data
-            if check_password_hash(admin.password, password):
+            if check_password_hash(admin.password_hash, password):
                 login_user(admin)
-                flash(f"Logged in as {admin.username}")
                 return redirect(url_for('admin'))
             else:
                 flash("Incorrect password", category="danger")
-                return redirect(url_for('admin'))
+                return redirect(url_for('admin_login'))
         else:
             flash("Username does not exist", category="danger")
-            return redirect(url_for('admin'))
-    return redirect(url_for('admin'))
+            return redirect(url_for('admin_login'))
+    return render_template('admin_login.html', login_form=form)
+
+
+@app.route("/admin_logout")
+def admin_logout():
+    logout_user()
+    flash("Logged out", category="primary")
+    return redirect(url_for('admin_login'))
 
 
 """ Flask Login Manager """

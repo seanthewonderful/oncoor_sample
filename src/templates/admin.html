@@ -16,8 +16,6 @@
     {% endwith %}
 </div>
 
-{% if current_user.is_authenticated %}
-
 <div class="container my-5 text-white">
     <div class="row py-4 justify-content-center">
         <form class="col-lg-4 add_player_form" method="post" action="{{ url_for('add_player') }}">
@@ -108,29 +106,5 @@
         </form>
     </div>
 </div>
-
-{% else %} 
-
-<div class="container my-5 text-white">
-    <div class="row py-4 justify-content-center">
-        <form class="col-6 login_form" method="post" action="#">
-            <h2>Login</h2>
-            {{ login_form.csrf_token }}
-            <div class="form-group">
-                {{ login_form.username.label }}
-                {{ login_form.username(class="form-control") }}
-            </div>
-            <div class="form-group">
-                {{ login_form.password.label }}
-                {{ login_form.password(class="form-control") }}
-            </div>
-            <div class="form-group my-3">
-                {{ login_form.submit(class="btn btn-primary") }}
-            </div>
-        </form>
-    </div>
-</div>
-
-{% endif %}
 
 {% endblock %}

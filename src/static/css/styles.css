@@ -32,19 +32,19 @@ div {
     top: 28%;
     z-index: 4;
     text-align: center;
-    text-shadow: 0 5px 7px rgb(64, 63, 63);
+    text-shadow: 0 4px 5px rgb(63, 63, 63);
 }
 .jumbotron .container h1 {
     padding-bottom: 20px;
     border-bottom: 1px solid #FFFFFF;
     border-bottom-color: rgba(255,255,255,0.35);
     display: inline-block;
-	/* background-image: linear-gradient(rgb(240, 240, 240) 28%, 
+	background-image: linear-gradient(rgb(240, 240, 240) 28%, 
                                     rgb(31, 31, 31) 40%,
                                     rgb(223, 223, 223) 54%);
 	text-align: center;
 	-webkit-background-clip:text;
-	-webkit-text-fill-color: transparent; */
+	-webkit-text-fill-color: transparent;
 }
 .jumbotron .overlay {
     background-color: rgb(86, 86, 86);
