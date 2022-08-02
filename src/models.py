@@ -3,11 +3,11 @@ from jinja2 import StrictUndefined
 from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
-import csv
 from os import environ
+from src import app
 
 
-app = Flask(__name__)
+# app = Flask(__name__)
 app.jinja_env.undefined = StrictUndefined
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"]=False
 # app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///oncoorDB.db'
