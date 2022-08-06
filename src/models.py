@@ -1,22 +1,13 @@
-from flask import Flask, render_template, redirect, url_for, request, flash
-from jinja2 import StrictUndefined
-from flask_wtf.csrf import CSRFProtect
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from os import environ
+import sys
+sys.path.insert(0, '../src')
 from src import app
 
 
-# app = Flask(__name__)
-app.jinja_env.undefined = StrictUndefined
-app.config["DEBUG_TB_INTERCEPT_REDIRECTS"]=False
-# app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///oncoorDB.db'
-app.config["SQLALCHEMY_DATABASE_URI"] = environ["POSTGRES_URI"]
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SECRET_KEY"] = "secretsecrets"
 db = SQLAlchemy(app)
-csrf = CSRFProtect(app)
-
 
 class Admin(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -107,3 +98,11 @@ if __name__ == "__main__":
 #             )
 #             db.session.add(new_item)
 #             db.session.commit()
+
+# app = Flask(__name__)
+# app.jinja_env.undefined = StrictUndefined
+# app.config["DEBUG_TB_INTERCEPT_REDIRECTS"]=False
+# app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///oncoorDB.db'
+# app.config["SQLALCHEMY_DATABASE_URI"] = environ["POSTGRES_URI"]
+# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# app.config["SECRET_KEY"] = "secretsecrets"

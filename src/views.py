@@ -7,6 +7,7 @@ import random
 from src import app
 from src.forms import AddPlayer, AddShopItem, DeletePlayer, DeleteShopItem, RegisterForm, LoginForm
 from src.models import db, Player, ShopItem, Admin, get_player
+from flask_wtf.csrf import CSRFProtect
 
 
 sender_email = "bigbirthdaybuddyboy@gmail.com"
@@ -14,6 +15,7 @@ receiver_email = "seanthewonderful@gmail.com"
 gmail_app_pw = environ["GMAIL_PW"]
 login_manager = LoginManager()
 login_manager.init_app(app)
+csrf = CSRFProtect(app)
 
 
 @app.route("/")
