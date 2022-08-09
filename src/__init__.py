@@ -9,9 +9,9 @@ app = Flask(__name__)
 # else: 
 #     app.config.from_object("config.DevelopmentConfig")
     
-from src import models, views, forms
-
+from src import models
 models.connect_to_db(app)
+from src import views, forms
 
 
 # if __name__ == "__main__":
