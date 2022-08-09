@@ -10,8 +10,8 @@ from src.models import db, Player, ShopItem, Admin, get_player
 from flask_wtf.csrf import CSRFProtect
 
 
-sender_email = "bigbirthdaybuddyboy@gmail.com"
-receiver_email = "seanthewonderful@gmail.com"
+sender_email = environ["SENDER_EMAIL"]
+receiver_email = environ["RECEIVER_EMAIL"]
 gmail_app_pw = environ["GMAIL_PW"]
 login_manager = LoginManager()
 login_manager.init_app(app)
