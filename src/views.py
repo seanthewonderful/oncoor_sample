@@ -8,10 +8,6 @@ from src import app
 from src.forms import AddPlayer, AddShopItem, DeletePlayer, DeleteShopItem, RegisterForm, LoginForm
 from src.models import db, Player, ShopItem, Admin, get_player
 from flask_wtf.csrf import CSRFProtect
-# from __future__ import annotations
-# from typing import TYPE_CHECKING
-# if TYPE_CHECKING:
-#     from testing.end_to_end.mock.mock_ui import MockUI
 
 sender_email = environ["SENDER_EMAIL"]
 receiver_email = environ["RECEIVER_EMAIL"]

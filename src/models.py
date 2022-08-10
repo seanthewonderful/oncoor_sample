@@ -5,9 +5,9 @@ from os import environ
 # import sys
 # sys.path.insert(0, '../src')
 from src import app
-from decouple import config
 
-app.config["SQLALCHEMY_DATABASE_URI"] = environ["POSTGRES_URI"]
+
+# app.config["SQLALCHEMY_DATABASE_URI"] = environ["POSTGRES_URI"]
 # SQLALCHEMY_DATABASE_URI = config("POSTGRES_URI")
 db = SQLAlchemy(app)
 
