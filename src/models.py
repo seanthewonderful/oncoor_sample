@@ -57,9 +57,9 @@ def get_admin(admin_id):
     return Admin.query.get(admin_id)
 
 def connect_to_db(app):
-    app.config["SQLALCHEMY_DATABASE_URI"] = environ["POSTGRES_URI"]
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    app.secret_key = environ["SECRET_KEY"]
+    # app.config["SQLALCHEMY_DATABASE_URI"] = environ["SQLALCHEMY_DATABASE_URI"]
+    # app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    # app.secret_key = environ["SECRET_KEY"]
     db.app = app
     db.init_app(app)
       
