@@ -1,6 +1,7 @@
 from flask import Flask
 from os import environ
 from jinja2 import StrictUndefined
+from settings import DevelopmentConfig
 
 app = Flask(__name__)
 
@@ -10,7 +11,7 @@ app = Flask(__name__)
 # app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 
 # env_config = environ.get("APP_SETTINGS")
-app.config.from_object("settings.DevelopmentConfig")
+app.config.from_object(DevelopmentConfig())
 app.jinja_env.undefined = StrictUndefined
 
 from src import models
