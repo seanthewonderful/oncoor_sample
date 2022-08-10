@@ -18,12 +18,14 @@ itsdangerous==2.1.2
 Jinja2==3.1.2
 MarkupSafe==2.1.1
 numpy==1.23.1
+-e git+https://github.com/seanthewonderful/oncoor_sample.git@65f9ac9f1976d1de48492875bf8921fdf7f6bca5#egg=oncoor_demo
 packaging==21.3
 pip-upgrader==1.4.15
 psycopg2==2.9.3
 pyparsing==3.0.9
 python-dateutil==1.5
 python-decouple==3.6
+python-dotenv==0.20.0
 pytz==2022.1
 requests==2.28.1
 six==1.16.0
