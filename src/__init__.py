@@ -1,6 +1,5 @@
 from flask import Flask
 from os import environ
-import os
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
@@ -10,8 +9,8 @@ app = Flask(__name__)
 # app.config["SQLALCHEMY_DATABASE_URI"] = environ["SQLALCHEMY_DATABASE_URI"]
 # app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 
-env_config = os.getenv("APP_SETTINGS", "settings.DevelopmentConfig")
-app.config.from_object(env_config)
+# env_config = environ.get("APP_SETTINGS")
+app.config.from_object("settings.DevelopmentConfig")
 app.jinja_env.undefined = StrictUndefined
 
 from src import models
