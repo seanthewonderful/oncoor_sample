@@ -1,7 +1,6 @@
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
-from os import environ
 # import sys
 # sys.path.insert(0, '../src')
 from src import app
