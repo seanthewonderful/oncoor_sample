@@ -1,7 +1,7 @@
 from flask import Flask
 from os import environ
 from jinja2 import StrictUndefined
-from settings import DevelopmentConfig
+from src import DevelopmentConfig
 
 app = Flask(__name__)
 
