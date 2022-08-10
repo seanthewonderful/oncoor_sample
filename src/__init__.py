@@ -9,7 +9,7 @@ app = Flask(__name__)
 # app.config["SQLALCHEMY_DATABASE_URI"] = environ["SQLALCHEMY_DATABASE_URI"]
 # app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 
-env_config = environ.get("APP_SETTINGS", "settings.DevelopmentConfig")
+env_config = environ.get("APP_SETTINGS", "src/settings.DevelopmentConfig")
 app.config.from_object(env_config)
 app.jinja_env.undefined = StrictUndefined
 
