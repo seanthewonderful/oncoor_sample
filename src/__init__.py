@@ -2,12 +2,12 @@ from flask import Flask
 
 app = Flask(__name__)
 
-# app.config.from_envvar('APP_SETTINGS')
+app.config.from_pyfile('settings.py')
 
-# if app.config["ENV"] == "production":
-#     app.config.from_object("config.ProductionConfig")
-# else: 
-#     app.config.from_object("config.DevelopmentConfig")
+def create_app():
+    app = Flask(__name__)
+    app.config.from_pyfile('settings.py')
+    return app
     
 from src import models
 models.connect_to_db(app)
