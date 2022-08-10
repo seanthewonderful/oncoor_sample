@@ -1,10 +1,10 @@
 from flask import Flask
 from os import environ
 from jinja2 import StrictUndefined
-from src import DevelopmentConfig
 
 app = Flask(__name__)
 
+from src import DevelopmentConfig
 # app.secret_key = environ["SECRET_KEY"]
 # app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # app.config["SQLALCHEMY_DATABASE_URI"] = environ["SQLALCHEMY_DATABASE_URI"]
