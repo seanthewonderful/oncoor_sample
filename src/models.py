@@ -33,7 +33,7 @@ class Player(db.Model):
     position = db.Column(db.String(50), nullable=True)
     img1_url = db.Column(db.String(500))
     img2_url = db.Column(db.String(500))
-    shop_items = db.relationship('ShopItem', backref='Player')
+    shop_items = db.relationship('ShopItem', backref='player')
     
     def __repr__(self):
         return f"{self.first_name} {self.last_name}, {self.position} at {self.school}"
