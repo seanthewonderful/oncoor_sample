@@ -17,20 +17,12 @@ class AddPlayer(FlaskForm):
     img2_url = StringField("Image URL - Banner", validators=[DataRequired()])
     submit = SubmitField("Add Player")
     
-choices = [("", "---")]
-for player in Player.query.all():
-    choices.append((player.id, player.first_name +" "+ player.last_name))
-        
-item_choices = [("", "---")]
-for item in ShopItem.query.all():
-    item_choices.append((item.id, item.name))
-    
 class AddShopItem(FlaskForm):
     name = StringField("Item Name", validators=[DataRequired()])
     price = IntegerField("Price", validators=[DataRequired()])
     img1_url = StringField("Image URL", validators=[DataRequired()])
     img2_url = StringField("Image URL")
-    player_connection = SelectField("Player, if connected to item", choices=choices, validators=[Optional()])
+    player_connection = SelectField("Player, if connected to item", choices=[], validators=[Optional()])
     submit = SubmitField("Add Item")
 
 class DeletePlayer(FlaskForm):
