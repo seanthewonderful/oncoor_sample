@@ -12,8 +12,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = environ["POSTGRES_URI"]
 app.jinja_env.undefined = StrictUndefined
 
 from src import models
-from src import views, forms
 models.connect_to_db(app)
+from src import views, forms
 
 
 if __name__ == "__main__":
