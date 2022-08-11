@@ -11,6 +11,8 @@ from os import environ
 db = SQLAlchemy(app)
 
 class Admin(UserMixin, db.Model):
+    __tablename__ = 'admin'
+    
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(60))
     title = db.Column(db.String(60))
@@ -21,6 +23,8 @@ class Admin(UserMixin, db.Model):
         return f"Admin: {self.username}, {self.title}\nClearance Lvl: {self.clearance}"
 
 class Player(db.Model):
+    __tablename__ = 'player'
+    
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(40))
     last_name = db.Column(db.String(40))
@@ -35,6 +39,8 @@ class Player(db.Model):
         return f"{self.first_name} {self.last_name}, {self.position} at {self.school}"
     
 class ShopItem(db.Model):
+    __tablename__ = 'shop_item'
+    
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(140))
     price = db.Column(db.Integer)
