@@ -44,10 +44,7 @@ class ShopItem(db.Model):
     
     def __repr__(self):
         return f"Shop item {self.name}, player_id={self.player_id}"
-    
 
-player_data = Player.query.all()
-shop_items = ShopItem.query.all()
 
 def get_player(id):
     return Player.query.get(id)
