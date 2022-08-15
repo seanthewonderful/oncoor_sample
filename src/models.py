@@ -1,14 +1,15 @@
 
 from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
 from flask_login import UserMixin
 # import sys
 # sys.path.insert(0, '../src')
-from src import app
+# from src import app
 from os import environ
 
 # app.config["SQLALCHEMY_DATABASE_URI"] = environ["POSTGRES_URI"]
 # SQLALCHEMY_DATABASE_URI = config("POSTGRES_URI")
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 class Admin(UserMixin, db.Model):
     __tablename__ = 'admin'
@@ -66,41 +67,41 @@ def connect_to_db(app):
     db.init_app(app)
       
 if __name__ == "__main__":
+    app = Flask(__name__)
     connect_to_db(app)
     print("Connected to DB.")
 
 
+import csv
 
-
-
-# def seed_players():
-#     with open('src/players.csv', 'r') as d:
-#         player_data = csv.DictReader(d)
-#         for each in player_data:
-#             new_player = Player(
-#                 first_name = each['name'].split()[0],
-#                 last_name = each['name'].split()[1],
-#                 school = each['school'],
-#                 sport = each['sport'],
-#                 img1_url = each['img1'],
-#                 img2_url = each['img2']
-#             )
-#             db.session.add(new_player)
-#             db.session.commit()
+def seed_players():
+    with open('src/players.csv', 'r') as d:
+        player_data = csv.DictReader(d)
+        for each in player_data:
+            new_player = Player(
+                first_name = each['name'].split()[0],
+                last_name = each['name'].split()[1],
+                school = each['school'],
+                sport = each['sport'],
+                img1_url = each['img1'],
+                img2_url = each['img2']
+            )
+            db.session.add(new_player)
+            db.session.commit()
         
-# def seed_shop():
-#     with open('src/players.csv', 'r') as d:
-#         player_data = csv.DictReader(d)
-#         for each in player_data:
-#             new_item = ShopItem(
-#                 name = each['shop_item1'],
-#                 price = each['shop_item1_price'],
-#                 img1_url = each['shop_item1_img1'],
-#                 img2_url = each['shop_item1_img2'],
-#                 player_id = Player.query.filter_by(last_name=each['name'].split()[1]).first().id
-#             )
-#             db.session.add(new_item)
-#             db.session.commit()
+def seed_shop():
+    with open('src/players.csv', 'r') as d:
+        player_data = csv.DictReader(d)
+        for each in player_data:
+            new_item = ShopItem(
+                name = each['shop_item1'],
+                price = each['shop_item1_price'],
+                img1_url = each['shop_item1_img1'],
+                img2_url = each['shop_item1_img2'],
+                player_id = Player.query.filter_by(last_name=each['name'].split()[1]).first().id
+            )
+            db.session.add(new_item)
+            db.session.commit()
 
 # app = Flask(__name__)
 # app.jinja_env.undefined = StrictUndefined
